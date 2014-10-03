@@ -1,0 +1,75 @@
+- provide :title, "#{current_user.username.capitalize}'s Profile".html_safe
+
+.container
+  %h1
+    = current_user.username.capitalize
+  %hr
+  .row
+    .col-sm-6
+      .row
+        .col-sm-12
+          %h2
+            Public Info
+      .row
+        .col-xs-6
+          Current Email:
+        .col-xs-6.pull-left
+          = current_user.email
+      .row
+        .col-xs-6
+          %b
+            First Name:
+        .col-xs-6.pull-left
+          - if current_user.first_name.present?
+            = current_user.first_name.capitalize
+            .btn.btn-warning.btn-xs.pull-right
+              Change
+          - else
+            .btn.btn-warning.btn-xs
+              Add
+      .row
+        .col-xs-6
+          %b
+            Last Name:
+        .col-xs-6.pull-left
+          - if current_user.last_name.present?
+            = current_user.last_name.capitalize
+            .btn.btn-warning.btn-xs.pull-right
+              Change
+          - else
+            .btn.btn-warning.btn-xs
+              Add
+    .col-sm-6
+      .row
+        .col-sm-12
+          %h2
+            Private Info
+      .row
+        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+          = devise_error_messages!
+          %div
+            = f.label :email
+            = f.email_field :email, autofocus: true 
+          %div
+
+          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+            %div
+              Currently waiting confirmation for: #{resource.unconfirmed_email} 
+
+          %div
+            = f.label :password
+            = f.password_field :password, autocomplete: "off"
+          %div
+            = f.label :password_confirmation
+            = f.password_field :password_confirmation, autocomplete: "off"
+          %div
+            = f.label :current_password 
+            %i
+              (we need your current password to confirm your changes)
+            = f.password_field :current_password, autocomplete: "off"
+          %div
+            = f.submit "Update"
+
+          %div
+            Unhappy? 
+            = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete 

@@ -1,0 +1,14 @@
+- content_for :body_class, "landing_page"
+- provide :title, 'Home'
+
+-# For non admins signed in
+- if user_signed_in?
+  %div
+
+- elsif current_user.try(:admin?)
+  %div
+- else
+  %section
+    %p
+      Mana is conjured from the earth and is used by the socerer to make incredible structures. Every time the sorcerer draws upon this amazing energy, it takes a little out of them. You will need to recharge after an amount of conjuring. Even an experienced sorcerer like yourself will need to recover every once in a while. 
+

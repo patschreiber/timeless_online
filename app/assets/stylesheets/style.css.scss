@@ -1,0 +1,63 @@
+html, body {
+  height: 100%;
+}
+
+/* ======================================
+        Universal Styling
+====================================== */
+
+/* The h*like classes are used to get the header font size without the default
+   header margin or padding that bootstrap adds. */
+.h1like {
+ font-size: 36px; 
+}
+
+.h2like {
+  font-size: 30px;
+}
+
+.h3like {
+  font-size: 24px;
+}
+
+.h4like {
+  font-size: 18px;
+}
+
+.h5like {
+  font-size: 14px;
+}
+
+.h6like {
+  font-size: 12px;
+}
+
+.progress {
+  border-radius: 2px;
+}
+
+/* ======================================
+        Page-specific Styling
+====================================== */
+
+body.game {
+  #exp-bar {
+    height: 10px;
+    margin-top: 6px;
+    margin-bottom: 0;
+  }
+  
+  #aura-label,
+  #mana-label,  
+  #vitality-label {
+    cursor: pointer;
+    font-size: 20px;
+    padding-right: 5px;
+  }
+
+  #wizard-tower {
+    background-color: #071D70;
+    height: 750px;
+    overflow-y: scroll;
+  }
+}

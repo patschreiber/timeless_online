@@ -1,0 +1,29 @@
+!!!
+%html
+  %head
+    %title
+      = (yield :title).present? ? "#{yield :title} | Timeless Online" : "Timeless Online" 
+    = favicon_link_tag "favicon.ico"
+    = stylesheet_link_tag "application", media: "all"
+    = javascript_include_tag "application"
+    = csrf_meta_tags 
+    %meta{'http-equiv' => 'Content-Language', :content => 'en'}
+    %meta{:content => "width=device-width", :name => "viewport", "initial-scale" => 1.0}
+    - if content_for?(:meta_description)
+      %meta{:content => yield(:meta_description), :name => "description" }
+
+  %body{ :class => "#{yield :body_class}" }
+    = render 'layouts/header'
+    - if notice
+      .container-fluid
+        .alert.alert-warning.text-center.alert-dismissable
+          %button{ :class => "close", :data => { :dismiss => "alert" } } 
+            x
+          = notice
+    - if alert
+      .container-fluid
+        .alert.alert-danger.text-center.alert-dismissable
+          %button.close{ :data => { :dismiss => "alert" } } x
+          = alert
+    = yield 
+    = render 'layouts/footer'
