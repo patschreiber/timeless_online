@@ -171,7 +171,7 @@ var playerStats = {
   hp: 100,
   atk: 2,
   def: 25,
-  speed: 1,
+  speed: 100,
   gold: 0,
   skills: ["sunsear", "bluntstrike", "phantasm"],
   magic: ["inferno"],
