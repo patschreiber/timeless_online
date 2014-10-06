@@ -3,16 +3,43 @@
     .col-sm-4.col-sm-offset-3
       %div
         Enemy HP
-        %span#enemy-hp{ :data => {"hp" => 100} }
+        %span#enemy-hp{ :data => {"hp" => "100"} }
+          100
       %div
         Player HP
-        %span#player-hp{ :data => {"hp" => 100} }
+        %span#player-hp{ :data => {"hp" => "100"} }
+          100
       %div 
         Armor Rating
-        %span#armor-rating{ :data => {"hp" => 100} }
-
+        %span#armor-rating{ :data => {"armor-rating" => "25"} }
+          25
       .progress
-        .progress-bar#player-atb-gauge{ :role => :progressbar, "aria-valuenow" => 100, "aria-valuemin" => 0, "aria-valuemax" => 100, :style => "width:0%"}
+        .progress-bar#player-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
       .progress
-        .progress-bar#enemy-atb-gauge{ :role => :progressbar, "aria-valuenow" => 100, "aria-valuemin" => 0, "aria-valuemax" => 100, :style => "width:0%"}
+        .progress-bar#enemy-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
 
+      %table.table.table-bordered
+        %tr
+          %td
+            .btn-group
+              %button.btn.btn-default.action#attack{ :data => {"action-type" => "attack"} }
+                Attack
+          %td
+            .btn-group
+              %button.btn.btn-default.dropdown-toggle#skill{ :type => "button", :data => {"toggle" => "dropdown"} }
+                Skills
+                %span.caret
+              %ul.dropdown-menu#skills-menu{ :role => "menu" }
+        %tr
+          %td
+            .btn-group
+              %button.btn.btn-default.dropdown-toggle#magic{ :type => "button", :data => {"toggle" => "dropdown"} }
+                Magic
+                %span.caret
+              %ul.dropdown-menu#magic-menu{ :role => "menu" }
+          %td
+            .btn-group
+              %button.btn.btn-default.dropdown-toggle#item{ :type => "button", :data => {"toggle" => "dropdown"} }
+                Items
+                %span.caret
+              %ul.dropdown-menu#items-menu{ :role => "menu" }
