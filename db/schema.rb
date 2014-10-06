@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140907233423) do
+ActiveRecord::Schema.define(version: 20140904212628) do
 
   create_table "building_wings", force: true do |t|
     t.string  "name"
@@ -24,8 +24,6 @@ ActiveRecord::Schema.define(version: 20140907233423) do
     t.string   "username"
     t.string   "last_name"
     t.string   "first_name"
-    t.text     "bio"
-    t.string   "location"
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

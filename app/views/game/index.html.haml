@@ -2,70 +2,13 @@
 
 .container
   .row
-    -# Player stats card
-    .col-sm-4.well
-      .row
-        .col-xs-12
-          .h4like.pull-left
-            = current_user.username.capitalize
-          .h4like.pull-right
-            Lv.
-            %span.badge
-              99
-      .row
-        .col-xs-2.has-tooltip#exp-label{ :data => { :toggle => "tooltip", :placement => "top" }, :title => "Experience is required to level up. When you fill a bar completely, you gain a level." }
-          EXP
-        .col-xs-10
-          .progress.has-tooltip#exp-bar{ :data => { :toggle => "tooltip", :placement => "right" }, :title => "% to level" }
-            .progress-bar.progress-bar-warning.has-tooltip{ :role => "progressbar", "aria-valuenow" => "60", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width: 100%;" }
-          .text-center
-            500/5000
-      -# Player Energy bars
-      %hr  
-      .row
-        -# Vitality
-        .col-xs-10.col-xs-offset-2
-          .ss-icon.ss-heart.pull-left.has-tooltip#vitality-label{ :data => { :toggle => "tooltip", :placement => "left" }, :title => "Some actions take a little bit of #{resource_one}, which refills slowly over time." }
-          .progress.has-tooltip
-            .progress-bar.progress-bar-danger.has-tooltip{ :role => "progressbar", "aria-valuenow" => "60", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width: 100%;" }
-              100/100
-        -# Mana
-        .col-xs-10.col-xs-offset-2
-          .ss-icon.ss-flask.pull-left.has-tooltip#mana-label{ :data => { :toggle => "tooltip", :placement => "left" }, :title => "Some actions take a large amount of #{resource_two}, which refills quickly over time." }
-          .progress.has-tooltip
-            .progress-bar.progress-bar-info.has-tooltip{ :role => "progressbar", "aria-valuenow" => "60", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width: 100%;" }
-              100/100
-        -# Aura
-        .col-xs-10.col-xs-offset-2
-          .ss-icon.ss-cloud.pull-left.has-tooltip#aura-label{ :data => { :toggle => "tooltip", :placement => "left" }, :title => "Upgrades take some #{resource_three}, which only refills with the use of #{rare_resource}s." }
-          .progress.has-tooltipr
-            .progress-bar.progress-bar-success.has-tooltip{ :role => "progressbar", "aria-valuenow" => "60", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width: 100%;" }
-              100/100
- 
-      %hr
-      .row
-        .col-xs-12
-          Inventory of things
-      .row
-        .col-xs-4
-          %span.ss-icon.ss-dollarsign
-          50000
+    .col-sm-6
+      .well
+        Name
+        = current_user.username
+        %b
+          Stats
 
-    -# Purchaseable building wings
-    .col-sm-2
-      = render :partial => "game/building_wings", :collection => @available_building_wings, :as => :wing
 
-    .col-sm-2.well
-    .col-sm-4
-      #wizard-tower
-        .block.small-block
-          .window.small-square-window.window-left
-          .window.small-square-window.window-right
-        .block.large-block
-          .window.large-square-window.window-left
-          .window.large-square-window.window-left
-          .window.large-square-window.window-right
-        .block.small-block
-          .window.small-tall-window.rounded-window.window-left
-        .block.large-block
-          .window.large-tall-window.rounded-window.window-left
+    .col-sm-6
+      = link_to "Battle Test", battle_path(current_user), :class => "btn btn-default btn-block"

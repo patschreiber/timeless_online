@@ -7,6 +7,10 @@ Wizardtower::Application.routes.draw do
     match '/signout' => 'devise/sessions#destroy', via: 'delete'
     match '/profile' => 'devise/registrations#edit', via: [:get, :post], :as => :profile
   end
+
+  authenticated :user do 
+    resources :battle
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
