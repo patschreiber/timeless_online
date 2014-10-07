@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007204032) do
+ActiveRecord::Schema.define(version: 20141007211059) do
 
   create_table "building_wings", force: true do |t|
     t.string  "name"
@@ -53,6 +53,21 @@ ActiveRecord::Schema.define(version: 20141007204032) do
     t.string   "description"
     t.integer  "classification"
     t.integer  "damage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_stats", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "level"
+    t.integer  "current_experience"
+    t.integer  "total_experience"
+    t.integer  "current_gold"
+    t.integer  "hp"
+    t.integer  "mp"
+    t.integer  "base_attack"
+    t.integer  "base_defense"
+    t.integer  "speed"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

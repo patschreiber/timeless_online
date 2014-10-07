@@ -24,4 +24,6 @@ class User < ActiveRecord::Base
       where(conditions).first
     end
   end
+
+  has_one :user_stat
 end
