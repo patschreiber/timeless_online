@@ -1,45 +1,70 @@
 .container
   .row
     .col-sm-4.col-sm-offset-3
-      %div
-        Enemy HP
-        %span#enemy-hp{ :data => {"hp" => "100"} }
-          100
-      %div
-        Player HP
-        %span#player-hp{ :data => {"hp" => "100"} }
-          100
-      %div 
-        Armor Rating
-        %span#armor-rating{ :data => {"armor-rating" => "25"} }
-          25
-      .progress
-        .progress-bar.remove-progress-bar-transition#player-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
-      .progress
-        .progress-bar#enemy-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
+      #player-stats
+        .row
+          .col-xs-12
+            .pull-left
+              = @user.username
+            .pull-right
+              %strong
+                Lv.
+              = @user.user_stat.level
+        %hr
+        .row
+          .col-xs-6.pull-left
+            HP:
+            %span#player-hp{ :data => {"hp" => "#{@user.user_stat.hp}"} }
+              = @user.user_stat.hp
+          .col-xs-6.pull-right
+            MP:
+            %span#player-hp{ :data => {"mp" => "#{@user.user_stat.mp}"} }
+              = @user.user_stat.mp
+        .row
+          .col-xs-12
+            Armor
+            %span#armor-rating{ :data => {"armor-rating" => "#{@user.user_stat.base_defense}"} }
+              = @user.user_stat.base_defense
+        .hidden
+          #attack
+            = @user.user_stat.base_attack
+          #speed
+            = @user.user_stat.speed
 
-      %table.table.table-bordered
-        %tr
-          %td
-            .btn-group
-              %button.btn.btn-default.action#attack{ :data => {"action-type" => "attack"} }
-                Attack
-          %td
-            .btn-group
-              %button.btn.btn-default.dropdown-toggle#skill{ :type => "button", :data => {"toggle" => "dropdown"} }
-                Skills
-                %span.caret
-              %ul.dropdown-menu#skills-menu{ :role => "menu" }
-        %tr
-          %td
-            .btn-group
-              %button.btn.btn-default.dropdown-toggle#magic{ :type => "button", :data => {"toggle" => "dropdown"} }
-                Magic
-                %span.caret
-              %ul.dropdown-menu#magic-menu{ :role => "menu" }
-          %td
-            .btn-group
-              %button.btn.btn-default.dropdown-toggle#item{ :type => "button", :data => {"toggle" => "dropdown"} }
-                Items
-                %span.caret
-              %ul.dropdown-menu#items-menu{ :role => "menu" }
+      #atb-guages
+        .progress
+          .progress-bar.remove-progress-bar-transition#player-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
+        .progress
+          .progress-bar#enemy-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
+
+      #player-actions
+        %table.table.table-bordered
+          %tr
+            %td
+              .btn-group
+                %button.btn.btn-default.action#attack{ :data => {"action-type" => "attack"} }
+                  Attack
+            %td
+              .btn-group
+                %button.btn.btn-default.dropdown-toggle#skill{ :type => "button", :data => {"toggle" => "dropdown"} }
+                  Skills
+                  %span.caret
+                %ul.dropdown-menu#skills-menu{ :role => "menu" }
+          %tr
+            %td
+              .btn-group
+                %button.btn.btn-default.dropdown-toggle#magic{ :type => "button", :data => {"toggle" => "dropdown"} }
+                  Magic
+                  %span.caret
+                %ul.dropdown-menu#magic-menu{ :role => "menu" }
+            %td
+              .btn-group
+                %button.btn.btn-default.dropdown-toggle#item{ :type => "button", :data => {"toggle" => "dropdown"} }
+                  Items
+                  %span.caret
+                %ul.dropdown-menu#items-menu{ :role => "menu" }
+
+      -#%div
+      -#  Enemy HP
+      -#  %span#enemy-hp{ :data => {"hp" => "100"} }
+      -#    100
