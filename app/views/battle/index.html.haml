@@ -1,7 +1,7 @@
 .container
   .row
     .col-sm-4.col-sm-offset-3
-      #player-stats
+      #player-stats{ :data => {"base-attack" => "#{@user.user_stat.base_attack}", "speed" => "#{@user.user_stat.speed}"} }
         .row
           .col-xs-12
             .pull-left
@@ -9,7 +9,8 @@
             .pull-right
               %strong
                 Lv.
-              = @user.user_stat.level
+              %span#player-level{ :data => {"level" => "#{@user.user_stat.level}"} }
+                = @user.user_stat.level
         %hr
         .row
           .col-xs-6.pull-left
@@ -18,18 +19,13 @@
               = @user.user_stat.hp
           .col-xs-6.pull-right
             MP:
-            %span#player-hp{ :data => {"mp" => "#{@user.user_stat.mp}"} }
+            %span#player-mp{ :data => {"mp" => "#{@user.user_stat.mp}"} }
               = @user.user_stat.mp
         .row
           .col-xs-12
             Armor
             %span#armor-rating{ :data => {"armor-rating" => "#{@user.user_stat.base_defense}"} }
               = @user.user_stat.base_defense
-        .hidden
-          #attack
-            = @user.user_stat.base_attack
-          #speed
-            = @user.user_stat.speed
 
       #atb-guages
         .progress
@@ -63,6 +59,10 @@
                   Items
                   %span.caret
                 %ul.dropdown-menu#items-menu{ :role => "menu" }
+
+
+      %button.btn.btn-defualt.btn-block#dev-button
+        \.dev Button
 
       -#%div
       -#  Enemy HP
