@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   attr_accessor :login
 
   has_one :user_stat
+  has_many :user_inventories
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
