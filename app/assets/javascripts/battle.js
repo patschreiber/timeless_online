@@ -54,7 +54,7 @@ $(document).on('click', '.action', function() {
 
   switch(actionType) {
     case "attack":
-      attack(playerStats.atk);
+      attack(getPlayerAttack());
       break;
     case "skills":
       skills(actionTaken);
