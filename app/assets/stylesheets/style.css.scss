@@ -1,11 +1,14 @@
 .hidden {
   display: none;
 }
-
 .remove-progress-bar-transition {
   -webkit-transition: none;
   -moz-transition: none;
   -ms-transition: none;
   -o-transition: none;
   transition: none;
+}
+
+.atb-gauge {
+  height: 5px;
 }
