@@ -5,7 +5,8 @@
         .row
           .col-xs-12
             .pull-left
-              = @user.username
+              %h4
+                = @user.username.capitalize
             .pull-right
               %strong
                 Lv.
@@ -27,8 +28,7 @@
             %span#armor-rating
               = @user.user_stat.base_defense
       #player-atb-guage
-        .progress.atb-gauge
-          .progress-bar.remove-progress-bar-transition#player-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
+        = render :partial => 'atb_gauge', :locals => { :atb_owner => 'player' }
     
     .col-sm-4.col-sm-offset-4
       #enemy-stats
@@ -46,8 +46,7 @@
             %span#enemy-hp
               100
       #enemy-atb-guage
-        .progress.atb-gauge
-          .progress-bar.remove-progress-bar-transition#enemy-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
+        = render :partial => 'atb_gauge', :locals => { :atb_owner => 'enemy' }
 
   .row
     .col-sm-4.col-sm-offset-3
