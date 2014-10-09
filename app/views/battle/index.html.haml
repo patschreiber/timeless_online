@@ -24,7 +24,7 @@
         .row
           .col-xs-12
             Armor
-            %span#armor-rating{ :data => {"armor-rating" => "#{@user.user_stat.base_defense}"} }
+            %span#armor-rating
               = @user.user_stat.base_defense
       #player-atb-guage
         .progress.atb-gauge
@@ -64,7 +64,7 @@
                   Skills
                   %span.caret
                 %ul.dropdown-menu#skills-menu{ :role => "menu" }
-                  %li.action
+                  %li.action{ :data => {"action-type" => "skills", "action-taken" => "skill1"} }
                     = link_to "Skill 1", "#"
           %tr
             %td

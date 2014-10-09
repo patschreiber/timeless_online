@@ -10,22 +10,24 @@ $(document).ready(function() {
 });
 
 $(document).on('click', '.action', function() {
-  atbReady = false;
-  console.log(atbReady);  
+  atbReady = false; 
   var actionType = $(this).attr('data-action-type');
+  console.log(actionType);
+  var actionTaken = $(this).attr('data-action-taken');
+  console.log(actionTaken);
 
   switch(actionType) {
     case "attack":
       attack();
       break;
     case "skills":
-      skills();
+      skills(actionTaken);
       break;
     case "magic":
-      magic();
+      magic(actionTaken);
       break;
     case "items":
-      items();
+      items(actionTaken);
       break;
     default:
       break;
@@ -76,6 +78,7 @@ function attack() {
   
   //Use Ajax data
   promise.done(function(data) {
+    console.log(data);
     var player = data.player;
     AtbGauge.playerAtbGauge(0, player.speed);
   });
@@ -89,11 +92,13 @@ function attack() {
   //setEnemyHp(enemyHp);
 }
 
-function skills() {}
+function skills(actionTaken) {
+  console.log(actionTaken);
+}
 
-function magic() {}
+function magic(spellUsed) {}
 
-function items() {}
+function items(itemUsed) {}
 
 
 
