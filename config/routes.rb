@@ -19,6 +19,9 @@ Wizardtower::Application.routes.draw do
   match '/game' => 'game#index', via: [:get, :post], :as => :game
   get 'help' => 'pages#help', :as => :help
 
+  # Ajax requests
+  post '/battle-action' => 'battle#battle_action'
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

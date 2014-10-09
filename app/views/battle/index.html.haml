@@ -1,7 +1,7 @@
 .container
   .row
     .col-sm-4
-      #player-stats{ :data => {"base-attack" => "#{@user.user_stat.base_attack}", "speed" => "#{@user.user_stat.speed}"} }
+      #player-stats
         .row
           .col-xs-12
             .pull-left
@@ -9,17 +9,17 @@
             .pull-right
               %strong
                 Lv.
-              %span#player-level{ :data => {"level" => "#{@user.user_stat.level}"} }
+              %span#player-level
                 = @user.user_stat.level
         %hr
         .row
           .col-xs-6.pull-left
             HP:
-            %span#player-hp{ :data => {"hp" => "#{@user.user_stat.hp}"} }
+            %span#player-hp
               = @user.user_stat.hp
           .col-xs-6.pull-right
             MP:
-            %span#player-mp{ :data => {"mp" => "#{@user.user_stat.mp}"} }
+            %span#player-mp
               = @user.user_stat.mp
         .row
           .col-xs-12
@@ -31,7 +31,7 @@
           .progress-bar.remove-progress-bar-transition#player-atb-gauge{ :role => "progressbar", "aria-valuenow" => "100", "aria-valuemin" => "0", "aria-valuemax" => "100", :style => "width:0%"}
     
     .col-sm-4.col-sm-offset-4
-      #enemy-stats{ :data => {"mp" => "100", "armor-rating" => "25", "base-attack" => "#{@user.user_stat.base_attack}", "speed" => "#{@user.user_stat.speed}"} }
+      #enemy-stats
         .row
           .col-xs-12
             .pull-left
@@ -43,7 +43,7 @@
         .row
           .col-xs-6.pull-left
             HP:
-            %span#enemy-hp{ :data => {"hp" => "#{@user.user_stat.hp}"} }
+            %span#enemy-hp
               100
       #enemy-atb-guage
         .progress.atb-gauge
@@ -64,6 +64,8 @@
                   Skills
                   %span.caret
                 %ul.dropdown-menu#skills-menu{ :role => "menu" }
+                  %li.action
+                    = link_to "Skill 1", "#"
           %tr
             %td
               .btn-group
@@ -71,18 +73,21 @@
                   Magic
                   %span.caret
                 %ul.dropdown-menu#magic-menu{ :role => "menu" }
+                  %li.action
+                    = link_to "Magic 1", "#"
             %td
               .btn-group
                 %button.btn.btn-default.dropdown-toggle#item{ :type => "button", :data => {"toggle" => "dropdown"} }
                   Items
                   %span.caret
                 %ul.dropdown-menu#items-menu{ :role => "menu" }
+                  %li.action
+                    = link_to "Item 1", "#"
 
 
       %button.btn.btn-defualt.btn-block#dev-button
         \.dev Button
 
-      -#%div
-      -#  Enemy HP
-      -#  %span#enemy-hp{ :data => {"hp" => "100"} }
-      -#    100
+
+
+

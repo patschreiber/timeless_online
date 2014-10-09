@@ -1,43 +1,36 @@
 $(document).ready(function() {
-  disableBattleActions();
-  var playerAtb = playerAtbGauge(0, getPlayerSpeed());
-  var enemyAtb = enemyAtbGauge(0, 50);
+  $(function() {
+    var atbReady = false;
+    console.log(atbReady)
+    disableBattleActions();
+    AtbGauge.playerAtbGauge(0, getPlayerSpeed());
+    // TODO This is a temp enemy ATB gauge
+    AtbGauge.enemyAtbGauge(0, 50);
+  })
 });
 
 $(document).on('click', '.action', function() {
-  $('#player-atb-gauge').addClass('remove-progress-bar-transition');
-  playerAtbGauge(0, getPlayerSpeed());
-  disableBattleActions();
+  atbReady = false;
+  console.log(atbReady);  
+  var actionType = $(this).attr('data-action-type');
+
+  switch(actionType) {
+    case "attack":
+      attack();
+      break;
+    case "skills":
+      skills();
+      break;
+    case "magic":
+      magic();
+      break;
+    case "items":
+      items();
+      break;
+    default:
+      break;
+  }
 });
-
-$(document).on('click', '#dev-button', function() {
-  console.log(getPlayerHp());
-  console.log(getPlayerMp());
-  console.log(getPlayerAttack());
-  console.log(getPlayerSpeed());
-});
-
-function playerAtbGauge(count, speed) {
-  var timer = setInterval(function() {
-    count++;
-    $('#player-atb-gauge').css('width', count + '%')
-    if (count >= 100) {
-      clearInterval(timer);
-      enableBattleActions();
-    }
-  }, speed);
-}
-
-function enemyAtbGauge(count, speed) {
-  var timer = setInterval(function() {
-    count++;
-    $('#enemy-atb-gauge').css('width', count + '%')
-    if (count >= 100) {
-      clearInterval(timer);
-      enemyAi();
-    }
-  }, speed);
-}
 
 function enableBattleActions() {
   $('#attack, #skill, #magic, #item').removeAttr('disabled');
@@ -47,53 +40,61 @@ function disableBattleActions() {
   $('#attack, #skill, #magic, #item').attr('disabled', 'disabled');
 }
 
+var AtbGauge = {
+  playerAtbGauge: function (count, speed) {
+    var timer = setInterval(function() {
+      count++;
+      $('#player-atb-gauge').css('width', count + '%')
+      if (count >= 100) {
+        atbReady = true;
+        console.log(atbReady);
+        clearInterval(timer);
+        enableBattleActions();
+      }
+    }, speed);
+  },
+  enemyAtbGauge: function (count, speed) {
+    var timer = setInterval(function() {
+      count++;
+      $('#enemy-atb-gauge').css('width', count + '%')
+      if (count >= 100) {
+        clearInterval(timer);
+        enemyAi();
+      }
+    }, speed);
+  },
+  resetAtbGauge: function() {
 
-$(document).on('click', '.action', function() {
-  var actionType = $(this).attr('data-action-type');
-  var actionTaken = $(this).attr('id');
-
-  switch(actionType) {
-    case "attack":
-      attack(getPlayerAttack());
-      break;
-    case "skills":
-      skills(actionTaken);
-      break;
-    case "magic":
-      magic(actionTaken);
-      break;
-    case "items":
-      items(actionTaken);
-      break;
-    default:
-      break;
   }
-});
+}
 
 // Player actions
 
 
-function attack(baseAtk) {
-  var enemyHp = getEnemyHp();
+function attack() {
+  var promise = requestData("attack");
+  
+  //Use Ajax data
+  promise.done(function(data) {
+    var player = data.player;
+    AtbGauge.playerAtbGauge(0, player.speed);
+  });
+
+  //var enemyHp = getEnemyHp();
 
   // Basic damage calculation
-  enemyHp = enemyHp - baseAtk;
+  //enemyHp = enemyHp - baseAtk;
 
   // Set the enemy's new remaining HP
-  setEnemyHp(enemyHp);
+  //setEnemyHp(enemyHp);
 }
 
-function skills(skillUsed) {
-  Skills[skillUsed].action();
-}
+function skills() {}
 
-function magic(magicUsed) {
-  Magic[magicUsed].action();
-}
+function magic() {}
 
-function items(itemUsed) {
-  Items[itemUsed].action();
-}
+function items() {}
+
 
 
 function enemyAi() {
@@ -106,38 +107,43 @@ function enemyAi() {
 
 //Getters
 
-function getPlayerHp() {
-  return parseInt($('#player-hp').attr('data-hp'));
-}
+function requestData(actionType) {
+  var data = { actionType: actionType }
 
-function getPlayerMp() {
-  return parseInt($('#player-mp').attr('data-mp'));
+  return $.ajax({
+    type: 'POST',
+    url: '/battle-action',
+    data: data,
+    beforeSend: function() {
+      disableBattleActions();
+    },
+    success: function(data) {
+    },
+    error: function(xhr, status, error) {
+      alert("There was an error retrieving data");
+      enableBattleActions();
+    },
+    complete: function() {}
+  });
+  return false;
+
 }
 
 function getPlayerSpeed() {
   return parseInt($('#player-stats').attr('data-speed'));
 }
 
-function getPlayerAttack() {
-  return parseInt($('#player-stats').attr('data-base-attack'));
-}
-
 function getEnemyHp() {
-  return parseInt($('#enemy-hp').attr('data-hp'));
-}
 
+}
 
 // Setters
 
 
 function setPlayerHp(playerHp) {
-  if ( $('#player-hp').length ) {
-    $('#player-hp').text(playerHp).attr('data-hp', playerHp);
-  }
+  $('#player-hp').text(playerHp).attr('data-hp', playerHp);
 }
 
 function setEnemyHp(enemyHp) {
-  if ( $('#enemy-hp').length ) {
-    $('#enemy-hp').text(enemyHp).attr('data-hp', enemyHp);
-  }
+  $('#enemy-hp').text(enemyHp).attr('data-hp', enemyHp);
 }
