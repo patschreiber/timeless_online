@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141008193422) do
+ActiveRecord::Schema.define(version: 20141009090357) do
 
   create_table "building_wings", force: true do |t|
     t.string  "name"
@@ -60,6 +60,16 @@ ActiveRecord::Schema.define(version: 20141008193422) do
   create_table "user_inventories", force: true do |t|
     t.integer "item_id",  limit: 8
     t.integer "quantity"
+  end
+
+  create_table "user_magic", force: true do |t|
+    t.integer "user_id"
+    t.integer "magic_id"
+  end
+
+  create_table "user_skills", force: true do |t|
+    t.integer "user_id"
+    t.integer "skill_id"
   end
 
   create_table "user_stats", force: true do |t|
