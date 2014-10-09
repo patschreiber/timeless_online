@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20141009090357) do
     t.datetime "updated_at"
   end
 
-  create_table "magic", force: true do |t|
+  create_table "magics", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "classification"
@@ -62,7 +62,7 @@ ActiveRecord::Schema.define(version: 20141009090357) do
     t.integer "quantity"
   end
 
-  create_table "user_magic", force: true do |t|
+  create_table "user_magics", force: true do |t|
     t.integer "user_id"
     t.integer "magic_id"
   end

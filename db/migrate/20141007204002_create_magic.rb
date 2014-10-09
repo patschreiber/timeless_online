@@ -1,6 +1,6 @@
 class CreateMagic < ActiveRecord::Migration
   def change
-    create_table :magic do |t|
+    create_table :magics do |t|
       t.string :name
       t.string :description
       t.integer :classification
