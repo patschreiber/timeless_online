@@ -1,34 +1,35 @@
 .container
   .row
     .col-sm-4
-      #player-stats
-        .row
-          .col-xs-12
-            .pull-left
-              %h4
-                = @user.username.capitalize
-            .pull-right
-              %strong
-                Lv.
-              %span#player-level
-                = @user.user_stat.level
-        %hr
-        .row
-          .col-xs-6.pull-left
-            HP:
-            %span#player-hp
-              = @user.user_stat.hp
-          .col-xs-6.pull-right
-            MP:
-            %span#player-mp
-              = @user.user_stat.mp
-        .row
-          .col-xs-12
-            Armor
-            %span#armor-rating
-              = @user.user_stat.base_defense
-      #player-atb-guage
-        = render :partial => 'atb_gauge', :locals => { :atb_owner => 'player' }
+      .well.ethereal
+        #player-stats
+          .row
+            .col-xs-12
+              .pull-left
+                %h4
+                  = @user.username.capitalize
+              .pull-right
+                %strong
+                  Lv.
+                %span#player-level
+                  = @user.user_stat.level
+          %hr
+          .row
+            .col-xs-6.pull-left
+              HP:
+              %span#player-hp
+                = @user.user_stat.hp
+            .col-xs-6.pull-right
+              MP:
+              %span#player-mp
+                = @user.user_stat.mp
+          .row
+            .col-xs-12
+              Armor
+              %span#armor-rating
+                = @user.user_stat.base_defense
+        #player-atb-guage
+          = render :partial => 'atb_gauge', :locals => { :atb_owner => 'player' }
     
     .col-sm-4.col-sm-offset-4
       #enemy-stats
