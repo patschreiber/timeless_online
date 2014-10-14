@@ -20,5 +20,6 @@ lambda {
   enemy.level = 1
   enemy.base_damage = 2
   enemy.base_defense = 0
+  enemy.save!
 }.call
 
