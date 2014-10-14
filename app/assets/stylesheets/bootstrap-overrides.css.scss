@@ -2,3 +2,10 @@
   border-radius: 0;
   border: 1px solid #F9F9F9;
 }
+.remove-progress-bar-transition {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none;
+}

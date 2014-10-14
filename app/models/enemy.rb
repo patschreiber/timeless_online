@@ -1,18 +1,17 @@
 # == Schema Information
 #
-# Table name: skills
+# Table name: enemies
 #
 #  id             :integer          not null, primary key
 #  name           :string(255)
 #  description    :string(255)
 #  classification :integer
-#  damage         :integer
+#  level          :integer
+#  base_damage    :integer
+#  base_defense   :integer
 #  created_at     :datetime
 #  updated_at     :datetime
 #
 
-
-class Skill < ActiveRecord::Base
-  has_many :user_skills
-  has_many :users, through: :user_skills
+class Enemy < ActiveRecord::Base
 end

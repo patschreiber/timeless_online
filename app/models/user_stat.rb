@@ -17,6 +17,7 @@
 #  updated_at         :datetime
 #
 
+
 class UserStat < ActiveRecord::Base
   belongs_to :user
   validates_presence_of :user

@@ -9,11 +9,10 @@
                 %h4
                   = @user.username.capitalize
               .pull-right
-                %strong
+                %h4
                   Lv.
-                %span#player-level
-                  = @user.user_stat.level
-          %hr
+                  %span#player-level
+                    = @user.user_stat.level
           .row
             .col-xs-6.pull-left
               HP:
@@ -50,7 +49,7 @@
         = render :partial => 'atb_gauge', :locals => { :atb_owner => 'enemy' }
 
   .row
-    .col-sm-4.col-sm-offset-3
+    .col-sm-12.text-center
       #player-actions
         %table.table.table-bordered
           %tr

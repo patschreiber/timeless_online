@@ -9,5 +9,16 @@
 puts "Seeding the database..."
 
 # Resets the seeds for static tables
-# Level.delete_all
+Enemy.delete_all
+
+puts "Seeding Enemies..."
+lambda {
+  enemy = Enemy.new
+  enemy.id = 1000
+  enemy.name = "Imp"
+  enemy.description = "A small demon that causes trouble."
+  enemy.level = 1
+  enemy.base_damage = 2
+  enemy.base_defense = 0
+}.call
 

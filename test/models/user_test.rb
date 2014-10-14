@@ -21,6 +21,7 @@
 #  admin                  :boolean          default(FALSE)
 #
 
+
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
