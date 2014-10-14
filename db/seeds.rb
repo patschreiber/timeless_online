@@ -9,9 +9,11 @@
 puts "Seeding the database..."
 
 # Resets the seeds for static tables
+Area.delete_all
 Enemy.delete_all
+EnemyArea.delete_all
 
-puts "Seeding Enemies..."
+puts "Seeding enemies..."
 lambda {
   enemy = Enemy.new
   enemy.id = 1000
@@ -22,4 +24,23 @@ lambda {
   enemy.base_defense = 0
   enemy.save!
 }.call
+puts "Done!"
 
+puts "Seeding areas..."
+lambda {
+  area = Area.new
+  area.id = 1
+  area.name = "Tainted Grassland"
+  area.save!
+}.call
+puts "Done!"
+
+puts "Seeding enemy areas..."
+puts "Seeding enemy area 1"
+lambda {
+  enemy_area = EnemyArea.new
+  enemy_area.enemy_id = 1000
+  enemy_area.area_id = 1
+  enemy_area.save!
+}.call
+puts "Done!"
