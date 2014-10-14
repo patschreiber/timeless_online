@@ -1,8 +1,11 @@
 class GameController < ApplicationController
 
   def index
-  end
-
-  def roll_item
+    @areas = Area.all
+    
+    @user_areas = []
+    current_user.areas.each do |user_area|
+      @user_areas.push(user_area.id)
+    end
   end
 end

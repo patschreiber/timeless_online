@@ -2,13 +2,16 @@
 
 .container
   .row
-    .col-sm-6
-      .well
-        Name
-        = current_user.username
-        %b
-          Stats
-
+    .col-sm-12
+      .btn-group.btn-group-justified
+        - @areas.each do |area|
+          - if @user_areas.include?(area.id)
+            .btn.btn-default
+              = area.name
+          - else
+            .btn.btn-default.disabled
+              %span.ss-icon.ss-lock
+              = area.name
 
   .row
     .col-sm-12
