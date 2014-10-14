@@ -12,7 +12,8 @@ class RegistrationsController < Devise::RegistrationsController
           :mp => 10,
           :base_attack => 3,
           :base_defense => 0,
-          :speed => 50  
+          :speed => 50,
+          :current_area => 1
         )
         @user_stats.save!
       end
