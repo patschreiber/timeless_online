@@ -13,6 +13,7 @@
 #  base_attack        :integer
 #  base_defense       :integer
 #  speed              :integer
+#  current_area       :string(255)
 #  created_at         :datetime
 #  updated_at         :datetime
 #
