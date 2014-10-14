@@ -16,6 +16,11 @@ class RegistrationsController < Devise::RegistrationsController
           :current_area => 1
         )
         @user_stats.save!
+
+        @user_areas = UserArea.create(
+          :user_id => resource.id,
+          :area_id => 1
+        )
       end
     end
   end
