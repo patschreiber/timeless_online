@@ -44,7 +44,22 @@ puts "Seeding areas..."
     area.name = "Tainted Grassland"
     area.save!
   }.call
+
+  lambda {
+    area = Area.new
+    area.id = 2
+    area.name = "Creepy Hollow"
+    area.save!
+  }.call
+
+  lambda {
+    area = Area.new
+    area.id = 3
+    area.name = "Metal Plains"
+    area.save!
+  }.call
 puts "Done!"
+
 
 puts "Seeding enemy areas..."
 puts "Seeding enemy area 1"
