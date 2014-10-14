@@ -45,6 +45,8 @@ class User < ActiveRecord::Base
   has_many :skills, through: :user_skills
   has_many :user_magics
   has_many :magics, through: :user_magics
+  has_many :user_areas
+  has_many :areas, through: :user_areas
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
