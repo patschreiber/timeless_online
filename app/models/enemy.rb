@@ -16,8 +16,4 @@
 class Enemy < ActiveRecord::Base
   has_many :enemy_areas
   has_many :areas, through: :enemy_areas
-
-  def determine_enemy_for_battle(user)
-    
-  end
 end

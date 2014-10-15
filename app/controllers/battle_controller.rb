@@ -1,7 +1,9 @@
 class BattleController < ApplicationController
   def index
     @user = User.find(current_user)
-    @player_current_area = @user.user_stat.current_area
+    enemies_in_area = EnemyArea.where(:area_id => @user.user_stat.current_area)
+    enemy_sample = enemies_in_area.sample
+    @enemy = enemy_sample.enemy
   end
 
   def battle_action

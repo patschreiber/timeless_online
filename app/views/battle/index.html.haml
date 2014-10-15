@@ -25,28 +25,36 @@
           .row
             .col-xs-12
               Armor
-              %span#armor-rating
+              %span#player-armor-rating
                 = @user.user_stat.base_defense
         #player-atb-guage
           = render :partial => 'atb_gauge', :locals => { :atb_owner => 'player' }
     
     .col-sm-4.col-sm-offset-4
-      #enemy-stats
-        .row
-          .col-xs-12
-            .pull-left
-              Enemy Name
-            .pull-right
-              %strong
-                Lv. 49
-        %hr
-        .row
-          .col-xs-6.pull-left
-            HP:
-            %span#enemy-hp
-              100
-      #enemy-atb-guage
-        = render :partial => 'atb_gauge', :locals => { :atb_owner => 'enemy' }
+      .well.ethereal
+        #enemy-stats
+          .row
+            .col-xs-12
+              .pull-left
+                %h4
+                  = @enemy.name.capitalize
+              .pull-right
+                %h4
+                  Lv.
+                  %span#enemy-level
+                    = @enemy.level
+          .row
+            .col-xs-6.pull-left
+              HP
+              %span#enemy-hp
+                100
+          .row
+            .col-xs-12
+              Armor
+              %span#enemy-armor-rating
+                = @enemy.base_defense
+        #enemy-atb-guage
+          = render :partial => 'atb_gauge', :locals => { :atb_owner => 'enemy' }
 
   .row
     .col-sm-12.text-center
