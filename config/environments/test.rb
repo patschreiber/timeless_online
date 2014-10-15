@@ -33,4 +33,6 @@ Wizardtower::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  config.secret_key_base = Rails.application.secrets.secret_key_base 
 end

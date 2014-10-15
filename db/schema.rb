@@ -17,12 +17,6 @@ ActiveRecord::Schema.define(version: 20141014191621) do
     t.string "name"
   end
 
-  create_table "building_wings", force: true do |t|
-    t.string  "name"
-    t.integer "cost"
-    t.string  "flavor_text"
-  end
-
   create_table "enemies", force: true do |t|
     t.string   "name"
     t.string   "description"
@@ -48,7 +42,7 @@ ActiveRecord::Schema.define(version: 20141014191621) do
     t.datetime "updated_at"
   end
 
-  create_table "magic", force: true do |t|
+  create_table "magics", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "classification"

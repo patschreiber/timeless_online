@@ -8,4 +8,8 @@ class GameController < ApplicationController
       @user_areas.push(user_area.id)
     end
   end
+
+  def update_area
+    
+  end
 end

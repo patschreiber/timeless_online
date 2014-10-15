@@ -87,6 +87,11 @@
       %button.btn.btn-defualt.btn-block#dev-button
         \.dev Button
 
+:javascript
+  $(window).on('beforeunload', function() {
+    return 'Leaving the battle will forfeit your rewards.'
+  });
+
 
 
 

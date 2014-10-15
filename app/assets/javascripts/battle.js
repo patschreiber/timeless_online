@@ -1,7 +1,3 @@
-$(window).on('beforeunload', function() {
-  return 'Leaving the battle will forfeit your rewards.'
-});
-
 $(document).ready(function() {
   $(function() {
     var atbReady = false;

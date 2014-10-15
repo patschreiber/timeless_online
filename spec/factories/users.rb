@@ -21,4 +21,3 @@
 #  admin                  :boolean          default(FALSE)
 #
 
-

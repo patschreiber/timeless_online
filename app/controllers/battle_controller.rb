@@ -1,6 +1,7 @@
 class BattleController < ApplicationController
   def index
     @user = User.find(current_user)
+    @player_current_area = @user.user_stat.current_area
   end
 
   def battle_action

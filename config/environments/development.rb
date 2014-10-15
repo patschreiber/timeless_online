@@ -28,5 +28,5 @@ Wizardtower::Application.configure do
   config.assets.debug = true
 
   config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.secret_key_base = 'dev_secret_key' 
+  config.secret_key_base = Rails.application.secrets.secret_key_base 
 end
