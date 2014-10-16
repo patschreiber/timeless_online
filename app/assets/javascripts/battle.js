@@ -1,6 +1,4 @@
 $(document).ready(function() {
-  var a = false;
-
   $(function() {
     var atbReady = false;
     disableBattleActions();
