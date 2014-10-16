@@ -28,7 +28,7 @@ class BattleController < ApplicationController
     next_level_exp = StatsService.determine_player_next_level_experience_requirement( @user.user_stat.level )
     updated_stats = StatsService.post_battle_update( @user, next_level_exp, @exp_to_add )
 
-    data = { next_exp: next_level_exp, updated_stats: updated_stats }
+    data = { next_exp: next_level_exp, player: @user.user_stat }
     render :json => data
   end
 
