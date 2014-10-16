@@ -76,13 +76,8 @@ function attack() {
     enemyHp = enemyHp - 24;
     setEnemyHp(enemyHp);
     if (winConditionCheck()) {
-      console.log(winConditionCheck());
       winCondition();
     }
-    else {
-      console.log(winConditionCheck());
-    }
-
     // Reset player atb gauge
     AtbGauge.playerAtbGauge(0, player.speed);
   });
