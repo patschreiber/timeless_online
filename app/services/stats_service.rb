@@ -15,8 +15,6 @@ class StatsService
     current_exp = user.user_stat.current_experience
     level = user.user_stat.level
 
-    user.user_stat.total_experience = user.user_stat.total_experience + exp_to_add
-
     current_exp = current_exp + exp_to_add
 
     if level < 98
@@ -40,6 +38,7 @@ class StatsService
 
     user.user_stat.level = level
     user.user_stat.current_experience = current_exp
+    user.user_stat.total_experience = user.user_stat.total_experience + exp_to_add
     user.user_stat.save!
   end
 
