@@ -1,20 +1,16 @@
 $(document).ready(function() {
   $(function() {
     var atbReady = false;
-    console.log(atbReady)
     disableBattleActions();
     AtbGauge.playerAtbGauge(0, getPlayerSpeed());
-    // TODO This is a temp enemy ATB gauge
-    AtbGauge.enemyAtbGauge(0, 50);
+    AtbGauge.enemyAtbGauge(0, getEnemySpeed());
   })
 });
 
 $(document).on('click', '.action', function() {
   atbReady = false; 
   var actionType = $(this).attr('data-action-type');
-  console.log(actionType);
   var actionTaken = $(this).attr('data-action-taken');
-  console.log(actionTaken);
 
   switch(actionType) {
     case "attack":
@@ -49,7 +45,6 @@ var AtbGauge = {
       $('#player-atb-gauge').css('width', count + '%')
       if (count >= 100) {
         atbReady = true;
-        console.log(atbReady);
         clearInterval(timer);
         enableBattleActions();
       }
@@ -64,9 +59,6 @@ var AtbGauge = {
         enemyAi();
       }
     }, speed);
-  },
-  resetAtbGauge: function() {
-
   }
 }
 
@@ -80,16 +72,17 @@ function attack() {
   promise.done(function(data) {
     console.log(data);
     var player = data.player;
+    var enemyHp = getEnemyHp();
+    enemyHp = enemyHp - 24;
+    setEnemyHp(enemyHp);
+    if (winConditionCheck()) {
+      console.log("yeah");
+      winCondition();
+    }
+
+    // Reset player atb gauge
     AtbGauge.playerAtbGauge(0, player.speed);
   });
-
-  //var enemyHp = getEnemyHp();
-
-  // Basic damage calculation
-  //enemyHp = enemyHp - baseAtk;
-
-  // Set the enemy's new remaining HP
-  //setEnemyHp(enemyHp);
 }
 
 function skills(actionTaken) {
@@ -105,6 +98,23 @@ function items(itemUsed) {}
 function enemyAi() {
 
 }
+
+
+function winConditionCheck() {
+  var currentPlayerHp = getPlayerHp();
+  var currentEnemyHp = getEnemyHp();
+  if (currentPlayerHp > 0 && currentEnemyHp <= 0) {
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function winCondition() {
+  console.log("win");
+}
+
 
 
 //Getters and setters
@@ -131,24 +141,33 @@ function requestData(actionType) {
     complete: function() {}
   });
   return false;
-
 }
 
 function getPlayerSpeed() {
   return parseInt($('#player-stats').attr('data-speed'));
 }
 
-function getEnemyHp() {
+function getEnemySpeed() {
+  return parseInt($('#enemy-stats').attr('data-speed'));
+}
 
+function getPlayerHp() {
+  return parseInt($('#player-stats').attr('data-hp'));
+}
+
+function getEnemyHp() {
+  return parseInt($('#enemy-stats').attr('data-hp'));
 }
 
 // Setters
 
 
 function setPlayerHp(playerHp) {
-  $('#player-hp').text(playerHp).attr('data-hp', playerHp);
+  $('#player-stats').attr('data-hp', enemyHp);
+  $('#player-hp').text(playerHp);
 }
 
 function setEnemyHp(enemyHp) {
-  $('#enemy-hp').text(enemyHp).attr('data-hp', enemyHp);
+  $('#enemy-stats').attr('data-hp', enemyHp);
+  $('#enemy-hp').text(enemyHp);
 }

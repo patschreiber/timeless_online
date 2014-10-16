@@ -2,7 +2,7 @@
   .row
     .col-sm-4
       .well.ethereal
-        #player-stats
+        #player-stats{ :data => {:hp => "#{@user.user_stat.hp}",:speed => "#{@user.user_stat.speed}"} }
           .row
             .col-xs-12
               .pull-left
@@ -32,7 +32,7 @@
     
     .col-sm-4.col-sm-offset-4
       .well.ethereal
-        #enemy-stats
+        #enemy-stats{ :data => {:hp => "#{@enemy.hp}", :mp => "#{@enemy.mp}", :baseAtk => "#{@enemy.base_attack}", :baseDef => "#{@enemy.base_defense}", :speed => "#{@enemy.speed}"} }
           .row
             .col-xs-12
               .pull-left
@@ -47,7 +47,7 @@
             .col-xs-6.pull-left
               HP
               %span#enemy-hp
-                100
+                = @enemy.hp
           .row
             .col-xs-12
               Armor
