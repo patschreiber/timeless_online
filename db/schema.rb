@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141015184859) do
+ActiveRecord::Schema.define(version: 20141016192940) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -28,9 +28,10 @@ ActiveRecord::Schema.define(version: 20141015184859) do
     t.string   "description"
     t.integer  "classification"
     t.integer  "level"
+    t.integer  "experience"
     t.integer  "hp"
     t.integer  "mp"
-    t.integer  "base_damage"
+    t.integer  "base_attack"
     t.integer  "base_defense"
     t.integer  "speed"
     t.datetime "created_at"
@@ -101,6 +102,8 @@ ActiveRecord::Schema.define(version: 20141015184859) do
     t.integer  "base_defense"
     t.integer  "speed"
     t.string   "current_area"
+    t.integer  "total_wins"
+    t.integer  "total_losses"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

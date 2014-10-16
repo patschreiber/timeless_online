@@ -20,9 +20,10 @@ puts "Seeding enemies..."
     enemy.name = "Imp"
     enemy.description = "A small demon that causes trouble."
     enemy.level = 1
+    enemy.experience = 10
     enemy.hp = 25
     enemy.mp = 10
-    enemy.base_damage = 2
+    enemy.base_attack = 2
     enemy.base_defense = 0
     enemy.speed = 100
     enemy.save!
@@ -34,9 +35,10 @@ puts "Seeding enemies..."
     enemy.name = "Bubbling Pox"
     enemy.description = "An overgrown fungi that is about to pop."
     enemy.level = 2
+    enemy.experience = 15
     enemy.hp = 35
     enemy.mp = 10
-    enemy.base_damage = 5
+    enemy.base_attack = 5
     enemy.base_defense = 1
     enemy.speed = 105
     enemy.save!
