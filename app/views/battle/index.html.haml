@@ -92,14 +92,31 @@
                     = link_to "Item 1", "#"
 
 
-      %button.btn.btn-defualt.btn-block#dev-button
+      %button.btn.btn-defualt.btn-block#dev-button{ :data => {:toggle => "modal", :target => "#level-up-modal"} }
         \.dev Button
 
-:javascript
-  $(window).on('beforeunload', function() {
-    return 'Leaving the battle will forfeit your rewards.'
-  });
+.modal.fade#winner-modal{ :tabindex => "-1", :role => "dialog", "aria-hidden" => true, "aria-labelledby" => "winner-modal-label"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ :data => {:dismiss => "modal"} }
+          %span{ "aria-hidden" => true }
+            &times;
+          %span.sr-only
+            Close
+        %h4.modal-title.text-center#winner-modal-label
+          Victory is yours!
+      .modal-body
+        Yeah
 
+
+:javascript
+  //Prevents navigation away from page if battle is active
+  $(window).on('beforeunload', function() {
+    if (!winConditionCheck()) {
+      return 'Leaving the battle will forfeit your rewards.'
+    }
+  });
 
 
 

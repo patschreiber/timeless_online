@@ -1,4 +1,6 @@
 $(document).ready(function() {
+  var a = false;
+
   $(function() {
     var atbReady = false;
     disableBattleActions();
@@ -76,8 +78,11 @@ function attack() {
     enemyHp = enemyHp - 24;
     setEnemyHp(enemyHp);
     if (winConditionCheck()) {
-      console.log("yeah");
+      console.log(winConditionCheck());
       winCondition();
+    }
+    else {
+      console.log(winConditionCheck());
     }
 
     // Reset player atb gauge
@@ -104,6 +109,7 @@ function winConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp > 0 && currentEnemyHp <= 0) {
+    a = true;
     return true;
   }
   else {
@@ -112,7 +118,13 @@ function winConditionCheck() {
 }
 
 function winCondition() {
-  console.log("win");
+  // Create victory modal
+  $('#winner-modal').modal({
+    backdrop: 'static'
+  }).on('hide.bs.modal', function() {
+    //As an HTTP redirect (back button will not work ), we want this so they cant go back to the same battle
+    window.location.replace("/game");
+  });
 }
 
 
