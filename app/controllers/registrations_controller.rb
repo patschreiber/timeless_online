@@ -8,6 +8,8 @@ class RegistrationsController < Devise::RegistrationsController
           :user_id => resource.id,      
           :level => 1,
           :current_gold => 0,
+          :current_experience => 0,
+          :total_experience => 0,
           :hp => 100,
           :mp => 10,
           :base_attack => 3,

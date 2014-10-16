@@ -21,6 +21,7 @@ Wizardtower::Application.routes.draw do
 
   # Ajax requests
   post '/battle-action' => 'battle#battle_action'
+  post '/update-stats' => 'battle#update_stats'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

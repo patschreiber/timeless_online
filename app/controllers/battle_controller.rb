@@ -21,4 +21,15 @@ class BattleController < ApplicationController
     end
   end
 
+  def update_stats
+    @user = User.find(current_user)
+    @exp_to_add = Enemy.find(params[:enemy_id]).experience
+
+    next_level_exp = StatsService.determine_player_next_level_experience_requirement( @user.user_stat.level )
+    updated_stats = StatsService.post_battle_update( @user, next_level_exp, @exp_to_add )
+
+    data = { next_exp: next_level_exp, updated_stats: updated_stats }
+    render :json => data
+  end
+
 end
