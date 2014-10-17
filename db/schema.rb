@@ -11,16 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141016193551) do
+ActiveRecord::Schema.define(version: 20141017215503) do
 
   create_table "areas", force: true do |t|
     t.string "name"
-  end
-
-  create_table "building_wings", force: true do |t|
-    t.string  "name"
-    t.integer "cost"
-    t.string  "flavor_text"
   end
 
   create_table "enemies", force: true do |t|
@@ -57,7 +51,7 @@ ActiveRecord::Schema.define(version: 20141016193551) do
     t.integer "experience_required"
   end
 
-  create_table "magic", force: true do |t|
+  create_table "magics", force: true do |t|
     t.string   "name"
     t.string   "description"
     t.integer  "classification"
@@ -71,6 +65,7 @@ ActiveRecord::Schema.define(version: 20141016193551) do
     t.string   "description"
     t.integer  "classification"
     t.integer  "damage"
+    t.integer  "ap"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
