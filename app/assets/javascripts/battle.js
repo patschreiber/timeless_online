@@ -2,7 +2,8 @@ $(document).ready(function() {
   $(function() {
     var atbReady = false;
     disableBattleActions();
-    AtbGauge.playerAtbGauge(0, getPlayerSpeed());
+    AtbGauge.playerAtbGauge(0, 1);
+    //AtbGauge.playerAtbGauge(0, getPlayerSpeed());
     AtbGauge.enemyAtbGauge(0, getEnemySpeed());
   })
 });
@@ -70,10 +71,10 @@ function attack() {
   
   //Use Ajax data
   promise.done(function(data) {
-    console.log(data);
     var player = data.player;
     var enemyHp = getEnemyHp();
-    enemyHp = enemyHp - 24;
+    enemyHp = enemyHp - 1000; //TODO use this for debuggin
+    //enemyHp = enemyHp - player.base_damage;
     setEnemyHp(enemyHp);
     if (winConditionCheck()) {
       winCondition();
@@ -111,13 +112,63 @@ function winConditionCheck() {
 }
 
 function winCondition() {
-  // Create victory modal
-  $('#winner-modal').modal({
-    backdrop: 'static'
-  }).on('hide.bs.modal', function() {
-    //As an HTTP redirect (back button will not work ), we want this so they cant go back to the same battle
-    window.location.replace("/game");
+  // Send
+  data = {enemy_id: getEnemyId(), battle_outcome: 1}
+
+  $.ajax({
+    type: 'POST',
+    url: '/update-stats',
+    data: data,
+    beforeSend: function() {
+    },
+    success: function(data) {
+      var player = data.player
+      console.log(data);
+
+      // Create victory modal
+      $('#winner-modal').modal({
+        backdrop: 'static'
+      }).on('hide.bs.modal', function() {
+        //As an HTTP redirect (back button will not work ), we want this so they cant go back to the same battle
+        window.location.replace("/game");
+      }).on('shown.bs.modal', function() {
+        var currentPlayerLevel = parseInt($('#modal-player-level').text());
+        var currentExp = parseInt($('.current-experience').text());
+        var nextLevelExp = $('.next-level-exp').text();
+        var counter = 0;
+        var expToAdd = data.exp_to_add;
+        var percentToLevel = 0;
+
+        function incrementCurrentExpView() {
+          counter++;
+
+          // Increase exp in bar for user feedback. This is strickly front-end. Back-end data already saved. 
+          if (counter <= expToAdd) {
+            // Increase exp
+            currentExp++;
+            percentToLevel = getPercentToNextLevel(currentExp, nextLevelExp);
+            $('.player-exp-bar').css('width', percentToLevel + '%');
+            $('.current-experience').text(currentExp);
+            if (currentExp >= nextLevelExp) {
+              currentExp = 0;
+              currentPlayerLevel++;
+              $('#modal-player-level').text(currentPlayerLevel);
+              $('.player-exp-bar').css('width','0%');
+              $('.next-level-exp').text(data.next_level_exp);
+            }
+            setTimeout(incrementCurrentExpView, 10);
+          }
+        }
+
+        // Calls recursively until counter == expToAdd
+        incrementCurrentExpView();
+      });
+    },
+    error: function(xhr, status, error) {
+      console.log("There was an error retrieving data");
+    }
   });
+  return false;
 }
 
 
@@ -126,6 +177,10 @@ function winCondition() {
 
 
 //Getters
+
+function getPercentToNextLevel(currentExp, nextLevelExp) {
+  return Number((parseFloat(currentExp) / parseFloat(nextLevelExp) * 100).toFixed(1));
+}
 
 function requestData(actionType) {
   var data = { actionType: actionType }
@@ -142,8 +197,7 @@ function requestData(actionType) {
     error: function(xhr, status, error) {
       alert("There was an error retrieving data");
       enableBattleActions();
-    },
-    complete: function() {}
+    }
   });
   return false;
 }
@@ -154,6 +208,10 @@ function getPlayerSpeed() {
 
 function getEnemySpeed() {
   return parseInt($('#enemy-stats').attr('data-speed'));
+}
+
+function getEnemyId() {
+  return parseInt($('#enemy-stats').attr('data-enemyid'));
 }
 
 function getPlayerHp() {

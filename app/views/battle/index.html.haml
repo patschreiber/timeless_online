@@ -32,7 +32,7 @@
     
     .col-sm-4.col-sm-offset-4
       .well.ethereal
-        #enemy-stats{ :data => {:hp => "#{@enemy.hp}", :mp => "#{@enemy.mp}", :baseAtk => "#{@enemy.base_attack}", :baseDef => "#{@enemy.base_defense}", :speed => "#{@enemy.speed}"} }
+        #enemy-stats{ :data => {:enemyid => "#{@enemy.id}", :hp => "#{@enemy.hp}", :mp => "#{@enemy.mp}", :baseatk => "#{@enemy.base_attack}", :baseaef => "#{@enemy.base_defense}", :speed => "#{@enemy.speed}"} }
           .row
             .col-xs-12
               .pull-left
@@ -107,7 +107,28 @@
         %h4.modal-title.text-center#winner-modal-label
           Victory is yours!
       .modal-body
-        Yeah
+        .row
+          .col-xs-3
+            %h4.no-margin 
+              Lv.
+              %span#modal-player-level
+                = @user.user_stat.level
+          .col-xs-9
+            .progress.no-margin
+              .progress-bar.progress-bar-warning.player-exp-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: #{@percent_to_level}%;"}
+        .row
+          .col-xs-12
+            .text-center
+              .experience 
+                Experience: 
+                %span{ :class => 'current-experience' } 
+                  = @user.user_stat.current_experience
+                \/
+                %span{ :class => 'next-level-exp' }
+                  = @next_level_experience
+      .modal-footer
+        %button.btn.btn-primary{ :data => {:dismiss => "modal"} }
+          Continue
 
 
 :javascript
