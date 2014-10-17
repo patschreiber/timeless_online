@@ -124,6 +124,7 @@ function winCondition() {
     success: function(data) {
       var player = data.player
       console.log(data);
+      $('#exp-reward').text('EXP + ' + data.exp_to_add)
 
       // Create victory modal
       $('#winner-modal').modal({

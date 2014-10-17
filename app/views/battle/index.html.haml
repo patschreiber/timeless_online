@@ -104,7 +104,7 @@
             &times;
           %span.sr-only
             Close
-        %h4.modal-title.text-center#winner-modal-label
+        %h3.modal-title.text-center#winner-modal-label
           Victory is yours!
       .modal-body
         .row
@@ -126,6 +126,14 @@
                 \/
                 %span{ :class => 'next-level-exp' }
                   = @next_level_experience
+        .row
+          .col-xs-12
+            %h4
+              Rewards
+            %ul
+              %li#exp-reward
+
+
       .modal-footer
         %button.btn.btn-primary{ :data => {:dismiss => "modal"} }
           Continue
