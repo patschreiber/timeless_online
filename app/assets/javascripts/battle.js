@@ -1,11 +1,15 @@
 $(document).ready(function() {
-  $(function() {
-    var atbReady = false;
-    disableBattleActions();
-    AtbGauge.playerAtbGauge(0, 1);
-    //AtbGauge.playerAtbGauge(0, getPlayerSpeed());
-    AtbGauge.enemyAtbGauge(0, getEnemySpeed());
-  })
+
+  if ($('body').hasClass('battle')) {
+    $(function() {
+      var atbReady = false;
+      var enemyAtbReady = false;
+      disableBattleActions();
+      AtbGauge.playerAtbGauge(0, 1);
+      //AtbGauge.playerAtbGauge(0, getPlayerSpeed());
+      AtbGauge.enemyAtbGauge(0, getEnemySpeed());
+    });
+  }
 });
 
 $(document).on('click', '.action', function() {
@@ -56,6 +60,7 @@ var AtbGauge = {
       count++;
       $('#enemy-atb-gauge').css('width', count + '%')
       if (count >= 100) {
+        enemyAtbReady = true;
         clearInterval(timer);
         enemyAi();
       }
@@ -94,16 +99,21 @@ function items(itemUsed) {}
 
 
 
-function enemyAi() {
-
-}
-
-
 function winConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp > 0 && currentEnemyHp <= 0) {
-    a = true;
+    return true;
+  }
+  else {
+    return false;
+  }
+}
+
+function loseConditionCheck() {
+  var currentPlayerHp = getPlayerHp();
+  var currentEnemyHp = getEnemyHp();
+  if (currentPlayerHp <= 0 && currentEnemyHp > 0) {
     return true;
   }
   else {
@@ -113,7 +123,7 @@ function winConditionCheck() {
 
 function winCondition() {
   // Send
-  data = {enemy_id: getEnemyId(), battle_outcome: 1}
+  data = {enemy_id: getEnemyId(), battle_outcome: 1};
 
   $.ajax({
     type: 'POST',
@@ -184,7 +194,7 @@ function getPercentToNextLevel(currentExp, nextLevelExp) {
 }
 
 function requestData(actionType) {
-  var data = { actionType: actionType }
+  var data = { actionType: actionType };
 
   return $.ajax({
     type: 'POST',
@@ -227,11 +237,53 @@ function getEnemyHp() {
 
 
 function setPlayerHp(playerHp) {
-  $('#player-stats').attr('data-hp', enemyHp);
+  $('#player-stats').attr('data-hp', playerHp);
   $('#player-hp').text(playerHp);
 }
 
 function setEnemyHp(enemyHp) {
   $('#enemy-stats').attr('data-hp', enemyHp);
   $('#enemy-hp').text(enemyHp);
+}
+
+
+
+function enemyAi() {
+  enemyAtbReady = false;
+  var playerHp = getPlayerHp();
+  var promise = enemyAction();
+
+  promise.done(function(data) {
+    console.log(data);
+
+
+    // If the basic attack flag is true, just apply the damage
+    if (data.basic_attack == true) {
+      playerHp = playerHp - data.attack; 
+      setPlayerHp(playerHp);
+      loseConditionCheck();
+    }
+    else {
+
+    }
+  });
+}
+
+function enemyAction() {
+  var data = {enemy_id: getEnemyId()};
+
+  return $.ajax({
+    type: 'POST',
+    url: '/enemy-action',
+    data: data,
+    beforeSend: function() {},
+    success: function(data) {
+      AtbGauge.enemyAtbGauge(0, getEnemySpeed());
+    },
+    error: function() {
+      AtbGauge.enemyAtbGauge(0, getEnemySpeed());
+    },
+    complete: function() {}
+  });
+  return false;
 }

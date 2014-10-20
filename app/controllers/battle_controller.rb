@@ -41,4 +41,25 @@ class BattleController < ApplicationController
     render :json => data
   end
 
+  def enemy_action
+    @enemy = Enemy.find(params[:enemy_id])
+
+    # Make regular attacks more common
+    if @enemy.skills.length > 0 
+      random = Random.rand(0..10)
+      if random < 7
+        @attack = @enemy.base_attack
+        @basic_attack = true
+      else
+        @attack = @enemy.skills.sample
+        @basic_attack = false
+      end
+    else
+      @attack = @enemy.base_attack
+      @basic_attack = true
+    end
+
+    data = { enemy: @enemy, attack: @attack, basic_attack: @basic_attack }
+    render :json => data
+  end
 end
