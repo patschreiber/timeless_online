@@ -12,6 +12,9 @@ puts "Seeding the database..."
 Area.delete_all
 Enemy.delete_all
 EnemyArea.delete_all
+EnemySkill.delete_all
+Level.delete_all
+Skill.delete_all
 
 puts "Seeding enemies..."
   lambda {
@@ -86,6 +89,26 @@ puts "Seeding enemy area 1"
   }.call
 puts "Done!"
 
+puts "Seeding skills..."
+  lambda {
+    skill = Skill.new
+    skill.id = 1
+    skill.name = "Bash"
+    skill.description = "Attack with the bluntside of your weapon."
+    skill.damage = 10
+    skill.ap = 10
+    skill.save!
+  }.call
+puts "Done!"
+
+puts "Seeding enemy skills..."
+  lambda {
+    enemy_skill = EnemySkill.new
+    enemy_skill.enemy_id = 1000
+    enemy_skill.skill_id = 1
+    enemy_skill.save!
+  }.call
+puts "Done!"
 
 puts "Adding level requirements to the database..."
   lambda {

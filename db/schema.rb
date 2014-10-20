@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141017215503) do
+ActiveRecord::Schema.define(version: 20141020160438) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -35,6 +35,11 @@ ActiveRecord::Schema.define(version: 20141017215503) do
   create_table "enemy_areas", force: true do |t|
     t.integer "enemy_id"
     t.integer "area_id"
+  end
+
+  create_table "enemy_skills", force: true do |t|
+    t.integer "enemy_id"
+    t.integer "skill_id"
   end
 
   create_table "items", force: true do |t|
