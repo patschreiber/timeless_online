@@ -73,8 +73,11 @@
                   Skills
                   %span.caret
                 %ul.dropdown-menu#skills-menu{ :role => "menu" }
-                  %li.action{ :data => {"action-type" => "skills", "action-taken" => "skill1"} }
-                    = link_to "Skill 1", "#"
+                  - @user.skills.each do |skill|
+                    %li.action{ :data => {"action-type" => "skills", "action-taken" => "#{skill.name}"} }
+                      = link_to "#" do
+                        = skill.name
+                        %span.ss-icon.ss-info.pull-right{ :title => "#{skill.description}", :data => {"toggle" => "tooltip", "placement" => "auto"} }
           %tr
             %td
               .btn-group
