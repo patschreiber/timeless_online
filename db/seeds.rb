@@ -110,6 +110,14 @@ puts "Seeding enemy skills..."
   }.call
 puts "Done!"
 
+puts "TEST USER SKILLS"
+  lambda {
+    user_skill = UserSkill.new
+    user_skill.user_id = 1
+    user_skill.skill_id = 1
+    user_skill.save!
+  }.call
+
 puts "Adding level requirements to the database..."
   lambda {
     level = Level.new
