@@ -137,15 +137,15 @@
               Rewards
             %ul
               %li#exp-reward
+              %li#ap-reward
 
 
       .modal-footer
         %button.btn.btn-primary{ :data => {:dismiss => "modal"} }
           Continue
 
-
+//Prevents navigation away from page if battle is active
 :javascript
-  //Prevents navigation away from page if battle is active
   $(window).on('beforeunload', function() {
     if (!winConditionCheck()) {
       return 'Leaving the battle will forfeit your rewards.'

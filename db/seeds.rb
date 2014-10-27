@@ -24,6 +24,7 @@ puts "Seeding enemies..."
     enemy.description = "A small demon that causes trouble."
     enemy.level = 1
     enemy.experience = 10
+    enemy.ap = 1
     enemy.hp = 25
     enemy.mp = 10
     enemy.base_attack = 2
@@ -39,6 +40,7 @@ puts "Seeding enemies..."
     enemy.description = "An overgrown fungi that is about to pop."
     enemy.level = 2
     enemy.experience = 15
+    enemy.ap = 1
     enemy.hp = 35
     enemy.mp = 10
     enemy.base_attack = 5
@@ -109,14 +111,6 @@ puts "Seeding enemy skills..."
     enemy_skill.save!
   }.call
 puts "Done!"
-
-puts "TEST USER SKILLS"
-  lambda {
-    user_skill = UserSkill.new
-    user_skill.user_id = 1
-    user_skill.skill_id = 1
-    user_skill.save!
-  }.call
 
 puts "Adding level requirements to the database..."
   lambda {
