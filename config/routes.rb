@@ -16,8 +16,10 @@ Wizardtower::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'landing_page#index'
+  get '/about' => 'pages#index', :as => :about
   match '/game' => 'game#index', via: [:get, :post], :as => :game
-  get 'help' => 'pages#help', :as => :help
+  get '/help' => 'pages#help', :as => :help
+  get '/faq' => 'pages#faq', :as => :faq
 
   # Ajax requests
   post '/battle-action' => 'battle#battle_action'
