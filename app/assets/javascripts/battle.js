@@ -91,6 +91,7 @@ function attack() {
 
 function skills(actionTaken) {
   console.log(actionTaken);
+  console.log(Skills.bash)
 }
 
 function magic(spellUsed) {}

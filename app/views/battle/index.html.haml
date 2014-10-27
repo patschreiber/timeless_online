@@ -77,7 +77,7 @@
                     %li.action{ :data => {"action-type" => "skills", "action-taken" => "#{skill.name}"} }
                       = link_to "#" do
                         = skill.name
-                        %span.ss-icon.ss-info.pull-right{ :title => "#{skill.description}", :data => {"toggle" => "tooltip", "placement" => "auto"} }
+                        %span.ss-icon.ss-info.pull-right{ :id => "#{skill.name}", :title => "#{skill.description}", :data => {"toggle" => "tooltip", "placement" => "auto"} }
           %tr
             %td
               .btn-group
