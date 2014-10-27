@@ -15,4 +15,5 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require modernizr-2.8.3
+//= require libraries/skills.library
 //= require_tree .

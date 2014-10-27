@@ -91,7 +91,8 @@ function attack() {
 
 function skills(actionTaken) {
   console.log(actionTaken);
-  console.log(Skills.bash)
+  // Complete the action found in libraries/skills.library.js
+  Skills[actionTaken].effect();
 }
 
 function magic(spellUsed) {}
