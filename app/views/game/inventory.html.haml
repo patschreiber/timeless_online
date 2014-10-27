@@ -1,0 +1,49 @@
+- content_for :body_class, "inventory"
+
+.container
+  .row
+    %h1
+      #{current_user.username.capitalize}'s
+      Inventory
+  %hr
+  .row
+    %h3 
+      Currently Equipped
+    .col-sm-8
+      %table.table.table-bordered
+        %thread
+          %tr
+            %th
+              Slot
+            %th
+              Name
+            %th
+              Stats
+        %tbody
+          %tr
+            %td
+              Head
+          %tr
+            %td
+              Neck
+          %tr
+            %td
+              Body
+          %tr
+            %td
+              Legs
+          %tr
+            %td
+              Feet
+          %tr
+            %td
+              Ring
+          %tr
+            %td
+              Ring
+
+    .col-sm-4
+      #current-stats
+  .row
+    %h3
+      Loot Crate

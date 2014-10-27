@@ -9,6 +9,9 @@ class GameController < ApplicationController
     end
   end
 
+  def inventory
+  end
+
   def update_area
     
   end

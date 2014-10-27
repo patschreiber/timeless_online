@@ -19,6 +19,7 @@ Wizardtower::Application.routes.draw do
   get '/about' => 'pages#index', :as => :about
   match '/game' => 'game#index', via: [:get, :post], :as => :game
   get '/help' => 'pages#help', :as => :help
+  match '/inventory' => 'game#inventory', via: [:get, :post], :as => :inventory
   get '/faq' => 'pages#faq', :as => :faq
 
   # Ajax requests
