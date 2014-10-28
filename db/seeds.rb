@@ -107,8 +107,25 @@ puts "Done!"
 puts "Seeding enemy loot tables..."
   lambda {
     loot_table = EnemyLootTable.new
-    loot_table.id = 1000
+    loot_table.enemy_id = 1000
     loot_table.rarity = 1
+    loot_table.item_id = 1000
+    loot_table.save!
+  }.call
+
+  lambda {
+    loot_table = EnemyLootTable.new
+    loot_table.enemy_id = 1000
+    loot_table.rarity = 2
+    loot_table.item_id = 1001
+    loot_table.save!
+  }.call
+
+  lambda {
+    loot_table = EnemyLootTable.new
+    loot_table.enemy_id = 1000
+    loot_table.rarity = 3
+    loot_table.item_id = 1002
     loot_table.save!
   }.call
 puts "Done!"
@@ -128,6 +145,22 @@ puts "Seeding items..."
     item.id = 1000
     item.name = "Test Hoodie"
     item.description = "This isn't a hoodie, this is a test."
+    item.save!
+  }.call
+
+  lambda {
+    item = Item.new
+    item.id = 1001
+    item.name = "Tome of the Uncommon"
+    item.description = "This is an uncommon book filled with all sorts of useless information."
+    item.save!
+  }.call
+
+  lambda {
+    item = Item.new
+    item.id = 1002
+    item.name = "Rare Test Trinket"
+    item.description = "This is a rare, unreal trinket."
     item.save!
   }.call
 puts "Done!"

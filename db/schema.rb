@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20141028212802) do
   end
 
   create_table "enemy_loot_tables", force: true do |t|
+    t.integer "enemy_id"
     t.integer "rarity"
     t.integer "item_id"
   end
