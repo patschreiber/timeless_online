@@ -12,9 +12,34 @@ puts "Seeding the database..."
 Area.delete_all
 Enemy.delete_all
 EnemyArea.delete_all
+EnemyLootTable.delete_all
 EnemySkill.delete_all
+Item.delete_all
 Level.delete_all
 Skill.delete_all
+
+puts "Seeding areas..."
+  lambda {
+    area = Area.new
+    area.id = 1
+    area.name = "Tainted Grassland"
+    area.save!
+  }.call
+
+  lambda {
+    area = Area.new
+    area.id = 2
+    area.name = "Creepy Hollow"
+    area.save!
+  }.call
+
+  lambda {
+    area = Area.new
+    area.id = 3
+    area.name = "Metal Plains"
+    area.save!
+  }.call
+puts "Done!"
 
 puts "Seeding enemies..."
   lambda {
@@ -50,30 +75,6 @@ puts "Seeding enemies..."
   }.call
 puts "Done!"
 
-puts "Seeding areas..."
-  lambda {
-    area = Area.new
-    area.id = 1
-    area.name = "Tainted Grassland"
-    area.save!
-  }.call
-
-  lambda {
-    area = Area.new
-    area.id = 2
-    area.name = "Creepy Hollow"
-    area.save!
-  }.call
-
-  lambda {
-    area = Area.new
-    area.id = 3
-    area.name = "Metal Plains"
-    area.save!
-  }.call
-puts "Done!"
-
-
 puts "Seeding enemy areas..."
 puts "Seeding enemy area 1"
   lambda {
@@ -103,12 +104,31 @@ puts "Seeding skills..."
   }.call
 puts "Done!"
 
+puts "Seeding enemy loot tables..."
+  lambda {
+    loot_table = EnemyLootTable.new
+    loot_table.id = 1000
+    loot_table.rarity = 1
+    loot_table.save!
+  }.call
+puts "Done!"
+
 puts "Seeding enemy skills..."
   lambda {
     enemy_skill = EnemySkill.new
     enemy_skill.enemy_id = 1000
     enemy_skill.skill_id = 1
     enemy_skill.save!
+  }.call
+puts "Done!"
+
+puts "Seeding items..."
+  lambda {
+    item = Item.new
+    item.id = 1000
+    item.name = "Test Hoodie"
+    item.description = "This isn't a hoodie, this is a test."
+    item.save!
   }.call
 puts "Done!"
 

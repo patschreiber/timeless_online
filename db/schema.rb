@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141027205720) do
+ActiveRecord::Schema.define(version: 20141028212802) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -38,6 +38,11 @@ ActiveRecord::Schema.define(version: 20141027205720) do
     t.integer "area_id"
   end
 
+  create_table "enemy_loot_tables", force: true do |t|
+    t.integer "rarity"
+    t.integer "item_id"
+  end
+
   create_table "enemy_skills", force: true do |t|
     t.integer "enemy_id"
     t.integer "skill_id"
@@ -47,7 +52,6 @@ ActiveRecord::Schema.define(version: 20141027205720) do
     t.string   "name"
     t.string   "description"
     t.integer  "classification"
-    t.integer  "quantity"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

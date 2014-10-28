@@ -10,40 +10,42 @@
     %h3 
       Currently Equipped
     .col-sm-8
-      %table.table.table-bordered
-        %thread
-          %tr
-            %th
-              Slot
-            %th
-              Name
-            %th
-              Stats
-        %tbody
-          %tr
-            %td
-              Head
-          %tr
-            %td
-              Neck
-          %tr
-            %td
-              Body
-          %tr
-            %td
-              Legs
-          %tr
-            %td
-              Feet
-          %tr
-            %td
-              Ring
-          %tr
-            %td
-              Ring
+      .row
+        .col-xs-4.col-xs-offset-4
+          .well#equipped-head
+        .col-xs-4
+          .well#equipped-neck
+      .row
+        .col-xs-4
+          .well#equpped-arm-1
+        .col-xs-4
+          .well#equipped-body
+        .col-xs-4
+          .well#equipped-arm-2
+      .row
+        .col-xs-4
+          .well#equipped-hand-1
+        .col-xs-4
+          .well#equipped-legs
+        .col-xs-4
+          .well#equipped-hand-2
+      .row
+        .col-xs-4
+          .well#equipped-ring-1
+        .col-xs-4
+          .well#equipped-feet
+        .col-xs-4
+          .well#equipped-ring-2
 
     .col-sm-4
       #current-stats
   .row
     %h3
       Loot Crate
+    .col-xs-3
+      = link_to "#", :class => "thumbnail" do
+        %img{ :src => "http://placehold.it/150x150" }
+        .caption
+          %h3
+            Title
+
