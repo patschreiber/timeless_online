@@ -24,7 +24,7 @@ Wizardtower::Application.routes.draw do
 
   # Ajax requests
   post '/battle-action' => 'battle#battle_action'
-  post '/update-stats' => 'battle#update_stats'
+  post '/post-battle-update' => 'battle#post_battle_update'
   post '/enemy-action' => 'battle#enemy_action'
 
   # Example of regular route:

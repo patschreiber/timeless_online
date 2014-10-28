@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028212802) do
+ActiveRecord::Schema.define(version: 20141028220918) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(version: 20141028212802) do
     t.string   "name"
     t.string   "description"
     t.integer  "classification"
+    t.boolean  "can_add_uniqueness"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -145,6 +145,7 @@ puts "Seeding items..."
     item.id = 1000
     item.name = "Test Hoodie"
     item.description = "This isn't a hoodie, this is a test."
+    item.can_add_uniqueness = 1
     item.save!
   }.call
 
@@ -153,6 +154,7 @@ puts "Seeding items..."
     item.id = 1001
     item.name = "Tome of the Uncommon"
     item.description = "This is an uncommon book filled with all sorts of useless information."
+    item.can_add_uniqueness = 0
     item.save!
   }.call
 
@@ -161,6 +163,7 @@ puts "Seeding items..."
     item.id = 1002
     item.name = "Rare Test Trinket"
     item.description = "This is a rare, unreal trinket."
+    item.can_add_uniqueness = 0
     item.save!
   }.call
 puts "Done!"

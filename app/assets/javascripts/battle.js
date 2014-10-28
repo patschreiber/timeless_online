@@ -129,7 +129,7 @@ function winCondition() {
 
   $.ajax({
     type: 'POST',
-    url: '/update-stats',
+    url: '/post-battle-update',
     data: data,
     beforeSend: function() {
     },

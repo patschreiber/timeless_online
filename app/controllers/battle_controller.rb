@@ -23,8 +23,9 @@ class BattleController < ApplicationController
     end
   end
 
-  def update_stats
+  def post_battle_update
     @user = User.find(current_user)
+    @enemy = Enemy.find(params[:enemy_id])
     @exp_to_add = Enemy.find(params[:enemy_id]).experience
 
     options = {
@@ -36,6 +37,9 @@ class BattleController < ApplicationController
     
     # Updates the user_stats
     StatsService.post_battle_update( @user, @next_level_exp, options )
+
+    # Get items from the enemy, if any
+    ItemsService.generate_item_from_enemy( @enemy )
 
     data = { next_exp: @next_level_exp, player: @user.user_stat, exp_to_add: @exp_to_add }
     render :json => data
