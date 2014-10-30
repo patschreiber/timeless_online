@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141028220918) do
+ActiveRecord::Schema.define(version: 20141030205930) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -47,6 +47,34 @@ ActiveRecord::Schema.define(version: 20141028220918) do
   create_table "enemy_skills", force: true do |t|
     t.integer "enemy_id"
     t.integer "skill_id"
+  end
+
+  create_table "item_prefixes", force: true do |t|
+    t.string  "name"
+    t.integer "min_hp_modifier"
+    t.integer "max_hp_modifier"
+    t.integer "min_mp_modifier"
+    t.integer "max_mp_modifier"
+    t.integer "min_attack_modifier"
+    t.integer "max_attack_modifier"
+    t.integer "min_defense_modifier"
+    t.integer "max_defense_modifier"
+    t.float   "min_speed_modifier"
+    t.float   "max_speed_modifier"
+  end
+
+  create_table "item_suffixes", force: true do |t|
+    t.string  "name"
+    t.integer "min_hp_modifier"
+    t.integer "max_hp_modifier"
+    t.integer "min_mp_modifier"
+    t.integer "max_mp_modifier"
+    t.integer "min_attack_modifier"
+    t.integer "max_attack_modifier"
+    t.integer "min_defense_modifier"
+    t.integer "max_defense_modifier"
+    t.float   "min_speed_modifier"
+    t.float   "max_speed_modifier"
   end
 
   create_table "items", force: true do |t|

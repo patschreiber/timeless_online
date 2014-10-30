@@ -15,6 +15,8 @@ EnemyArea.delete_all
 EnemyLootTable.delete_all
 EnemySkill.delete_all
 Item.delete_all
+ItemPrefix.delete_all
+ItemSuffix.delete_all
 Level.delete_all
 Skill.delete_all
 
@@ -167,6 +169,56 @@ puts "Seeding items..."
     item.save!
   }.call
 puts "Done!"
+
+puts "Seeding Item prefixes..."
+  lambda {
+    item_prefix = ItemPrefix.new
+    item_prefix.name = "Valiant"
+    item_prefix.min_hp_modifier = 10
+    item_prefix.max_hp_modifier = 15
+    item_prefix.min_attack_modifier = 6
+    item_prefix.max_attack_modifier = 10
+    item_prefix.save!
+  }.call
+
+  lambda {
+    item_prefix = ItemPrefix.new
+    item_prefix.name = "Layman's"
+    item_prefix.min_hp_modifier = 1
+    item_prefix.max_hp_modifier = 1
+    item_prefix.min_attack_modifier = 2
+    item_prefix.max_attack_modifier = 2
+    item_prefix.min_defense_modifier = 2
+    item_prefix.max_defense_modifier = 2
+    item_prefix.save!
+  }.call
+puts "Done!"
+
+puts "Seeding Item Suffixes..."
+  lambda {
+    item_suffix = ItemSuffix.new
+    item_suffix.name = "of the Sloth"
+    item_suffix.min_speed_modifier = 10
+    item_suffix.max_speed_modifier = 20
+  }.call
+
+  lambda {
+    item_suffix = ItemSuffix.new
+    item_suffix.name = "of the Racer"
+    item_suffix.min_speed_modifier = -10
+    item_suffix.max_speed_modifier = -25
+  }.call
+
+  lambda {
+    item_suffix = ItemSuffix.new
+    item_suffix.name = "of the Sun"
+    item_suffix.min_hp_modifier = -10
+    item_suffix.max_hp_modifier = -20
+    item_suffix.min_defense_modifier = 5
+    item_suffix.max_defense_modifier = 10
+  }.call
+puts "Done!"
+
 
 puts "Adding level requirements to the database..."
   lambda {
