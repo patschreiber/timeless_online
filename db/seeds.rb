@@ -148,6 +148,8 @@ puts "Seeding items..."
     item.name = "Test Hoodie"
     item.description = "This isn't a hoodie, this is a test."
     item.can_add_uniqueness = 1
+    item.min_defense = 2
+    item.max_defense = 10
     item.save!
   }.call
 
@@ -165,7 +167,11 @@ puts "Seeding items..."
     item.id = 1002
     item.name = "Rare Test Trinket"
     item.description = "This is a rare, unreal trinket."
-    item.can_add_uniqueness = 0
+    item.can_add_uniqueness = 1
+    item.min_hp = 10
+    item.max_hp = 30
+    item.min_mp = 15
+    item.max_mp = 35
     item.save!
   }.call
 puts "Done!"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141030205930) do
+ActiveRecord::Schema.define(version: 20141103174929) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -82,6 +82,14 @@ ActiveRecord::Schema.define(version: 20141030205930) do
     t.string   "description"
     t.integer  "classification"
     t.boolean  "can_add_uniqueness"
+    t.integer  "min_hp"
+    t.integer  "max_hp"
+    t.integer  "min_mp"
+    t.integer  "max_mp"
+    t.integer  "min_attack"
+    t.integer  "max_attack"
+    t.integer  "min_defense"
+    t.integer  "max_defense"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
