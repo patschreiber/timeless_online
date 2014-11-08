@@ -27,19 +27,20 @@ class BattleController < ApplicationController
     @user = User.find(current_user)
     @enemy = Enemy.find(params[:enemy_id])
     @exp_to_add = Enemy.find(params[:enemy_id]).experience
+    @next_level_exp = Level.determine_player_next_level_experience_requirement( @user.user_stat.level )
 
     options = {
       :params => params,
       :exp_to_add => @exp_to_add
     }
-
-    @next_level_exp = Level.determine_player_next_level_experience_requirement( @user.user_stat.level )
     
     # Updates the user_stats
     StatsService.post_battle_update( @user, @next_level_exp, options )
 
     # Get items from the enemy, if any
-    ItemsService.generate_item_from_enemy( @enemy )
+    if @enemy.enemy_loot_tables.exists?
+      @reward_item = ItemsService.generate_item_from_enemy( @enemy )
+    end
 
     data = { next_exp: @next_level_exp, player: @user.user_stat, exp_to_add: @exp_to_add }
     render :json => data

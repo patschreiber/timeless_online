@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141103174929) do
+ActiveRecord::Schema.define(version: 20141108125509) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -48,6 +48,26 @@ ActiveRecord::Schema.define(version: 20141103174929) do
     t.integer "enemy_id"
     t.integer "skill_id"
   end
+
+  create_table "generated_items", force: true do |t|
+    t.integer  "base_item_id"
+    t.string   "unique_item_id"
+    t.string   "prefix_name"
+    t.string   "name"
+    t.string   "suffix_name"
+    t.string   "description"
+    t.integer  "classification"
+    t.boolean  "can_equip"
+    t.integer  "hp"
+    t.integer  "mp"
+    t.integer  "attack"
+    t.integer  "defense"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "generated_items", ["base_item_id"], name: "index_generated_items_on_base_item_id", using: :btree
+  add_index "generated_items", ["unique_item_id"], name: "index_generated_items_on_unique_item_id", unique: true, using: :btree
 
   create_table "item_prefixes", force: true do |t|
     t.string  "name"
@@ -124,8 +144,11 @@ ActiveRecord::Schema.define(version: 20141103174929) do
   end
 
   create_table "user_inventories", force: true do |t|
-    t.integer "item_id",  limit: 8
+    t.integer "user_id"
+    t.integer "base_item_id"
+    t.string  "unique_item_id"
     t.integer "quantity"
+    t.integer "position"
   end
 
   create_table "user_magics", force: true do |t|

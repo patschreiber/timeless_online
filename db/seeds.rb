@@ -206,6 +206,7 @@ puts "Seeding Item Suffixes..."
     item_suffix.name = "of the Sloth"
     item_suffix.min_speed_modifier = 10
     item_suffix.max_speed_modifier = 20
+    item_suffix.save!
   }.call
 
   lambda {
@@ -213,6 +214,7 @@ puts "Seeding Item Suffixes..."
     item_suffix.name = "of the Racer"
     item_suffix.min_speed_modifier = -10
     item_suffix.max_speed_modifier = -25
+    item_suffix.save!
   }.call
 
   lambda {
@@ -222,6 +224,7 @@ puts "Seeding Item Suffixes..."
     item_suffix.max_hp_modifier = -20
     item_suffix.min_defense_modifier = 5
     item_suffix.max_defense_modifier = 10
+    item_suffix.save!
   }.call
 puts "Done!"
 
