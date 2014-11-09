@@ -45,7 +45,10 @@ group :development, :test do
 
   # Rspec testing suite for rails
   gem 'rspec-rails'
+  # Capybara is for integration testing
   gem 'capybara'
+  # Makes database cleanup more consistent
+  gem 'database_cleaner'
 
   # Creates fixtures based on current models (user, admin, etc.) 
   gem 'factory_girl'
