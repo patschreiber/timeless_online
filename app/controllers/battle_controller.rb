@@ -39,7 +39,8 @@ class BattleController < ApplicationController
 
     # Get items from the enemy, if any
     if @enemy.enemy_loot_tables.exists?
-      @reward_item = ItemsService.generate_item_from_enemy( @enemy )
+      reward_item = ItemsService.generate_item_from_enemy( @enemy )
+      ItemsService.generate_uniqueness_or_save_item( current_user, reward_item )
     end
 
     data = { next_exp: @next_level_exp, player: @user.user_stat, exp_to_add: @exp_to_add }

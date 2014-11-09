@@ -21,21 +21,36 @@ class ItemsService
       enemy_item_found = enemy.enemy_loot_tables.where(:rarity => 3).sample
       item_found = Item.find_by_id(enemy_item_found.item_id)
     end
-      
+
+    item_found
+  end
+
+  def self.generate_uniqueness_or_save_item(current_user, item)
     # Generate a unique item or save regular item
-    if ( item_found.can_add_uniqueness == true )
-      new_item = self.add_uniqueness(item_found)
+    if ( item.can_add_uniqueness == true )
+      new_item = self.add_uniqueness(item)
       new_item.save!
 
       user_inventory = UserInventory.new
       user_inventory.user_id = current_user.id
       user_inventory.unique_item_id = new_item.unique_item_id
       user_inventory.quantity = 1
-
+      user_inventory.save!
     else 
-      return item_found
-    end
+      # See if an item is currently in the user inventory
+      item_in_inventory = current_user.user_inventories.find_by_base_item_id(item.id)
 
+      if item_in_inventory.nil?
+        user_inventory = UserInventory.new
+        user_inventory.user_id = current_user.id
+        user_inventory.base_item_id = item.id
+        user_inventory.quantity = 1
+        user_inventory.save!
+      else
+        item_in_inventory.quantity++
+        item_in_inventory.save!
+      end
+    end
   end
 
   def self.add_uniqueness(item)
@@ -55,22 +70,18 @@ class ItemsService
     # Compute item stat values from min and max
     unless item.min_hp.nil?
       new_item.hp = (item.min_hp..item.max_hp).to_a.sample
-      Rails.logger.debug new_item.hp
     end
 
     unless item.min_mp.nil?
       new_item.mp = (item.min_mp..item.max_mp).to_a.sample
-      Rails.logger.debug new_item.mp
     end
 
     unless item.min_attack.nil?
       new_item.attack = (item.min_attack..item.max_attack).to_a.sample
-      Rails.logger.debug new_item.attack
     end
 
     unless item.min_defense.nil?
       new_item.defense = (item.min_defense..item.max_defense).to_a.sample
-      Rails.logger.debug new_item.defense
     end
 
     # Now add any stat buffs/debuffs from affixes, stats cannot go in the negative
