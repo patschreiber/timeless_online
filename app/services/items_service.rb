@@ -47,7 +47,7 @@ class ItemsService
         user_inventory.quantity = 1
         user_inventory.save!
       else
-        item_in_inventory.quantity++
+        item_in_inventory.quantity = item_in_inventory.quantity + 1
         item_in_inventory.save!
       end
     end
