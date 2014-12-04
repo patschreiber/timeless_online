@@ -26,6 +26,7 @@ class ItemsService
   end
 
   def self.generate_uniqueness_or_save_item(current_user, item)
+
     # Generate a unique item or save regular item
     if ( item.can_add_uniqueness == true )
       new_item = self.add_uniqueness(item)
@@ -34,6 +35,7 @@ class ItemsService
       user_inventory = UserInventory.new
       user_inventory.user_id = current_user.id
       user_inventory.unique_item_id = new_item.unique_item_id
+      user_inventory.base_item_id = item.id
       user_inventory.quantity = 1
       user_inventory.save!
     else 
