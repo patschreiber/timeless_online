@@ -131,12 +131,26 @@ function winCondition() {
     type: 'POST',
     url: '/post-battle-update',
     data: data,
-    beforeSend: function() {
-    },
     success: function(data) {
-      var player = data.player
       console.log(data);
-      $('#exp-reward').text('EXP + ' + data.exp_to_add)
+      var player = data.player;
+      var rewardsNumericalGains = data.rewards.numericalGains;
+      var rewardsItems = data.rewards.items;
+
+      // If there are any numerical gains such as exp, add them
+      $.each(rewardsNumericalGains, function(name, value) {
+        $('<li><span class="label label-default">' + name + ' +' + value + '</span></li>').appendTo("#rewardNumericalGains");
+        $('#rewardNumericalGains').show();
+      });
+
+      // If there are any items awarded, display them
+      if (rewardsItems.length > 0) {
+        $.each(rewardsItems, function(index, objItem) {
+          itemName = humanizeItemName(objItem);
+          $('<li>' + itemName + '</li>').appendTo('#rewardItems');
+          $('#rewardItems').show();
+        });
+      }
 
       // Create victory modal
       $('#winner-modal').modal({
@@ -184,6 +198,21 @@ function winCondition() {
   return false;
 }
 
+function humanizeItemName(item) {
+  var item_prefix = item.prefix_name;
+  var item_name = item.name;
+  var item_suffix = item.suffix_name;
+  
+  if (typeof(item_prefix) == 'undefined' || item_prefix == null) {
+    item_prefix = '';
+  }
+
+  if (typeof(item_suffix) == 'undefined' || item_suffix == null) {
+    item_suffix = '';
+  }
+
+  return item_prefix + ' ' + item_name + ' ' + item_suffix;
+}
 
 
 //Getters and setters

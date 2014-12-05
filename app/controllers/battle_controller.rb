@@ -29,6 +29,11 @@ class BattleController < ApplicationController
     @exp_to_add = Enemy.find(params[:enemy_id]).experience
     @next_level_exp = Level.determine_player_next_level_experience_requirement( @user.user_stat.level )
 
+    # Rewards are split into two types: Numerical gains e.g. exp, ap, gold, etc. and Item gains, which are item objects
+    rewards = {}
+    rewards['items'] = []
+    rewards['numericalGains'] = {}
+
     options = {
       :params => params,
       :exp_to_add => @exp_to_add
@@ -39,11 +44,21 @@ class BattleController < ApplicationController
 
     # Get items from the enemy, if any
     if @enemy.enemy_loot_tables.exists?
-      reward_item = ItemsService.generate_item_from_enemy( @enemy )
-      ItemsService.generate_uniqueness_or_save_item( current_user, reward_item )
+      item_from_enemy = ItemsService.generate_item_from_enemy( @enemy )
+      reward_item = ItemsService.generate_uniqueness_or_save_item( current_user, item_from_enemy )
+
+      # Adds multiple items to the reward hash if multiple items were earned
+      rewards['items'].push(reward_item)
     end
 
-    data = { next_exp: @next_level_exp, player: @user.user_stat, exp_to_add: @exp_to_add }
+    # Add rewards for battle if there are any
+    rewards['numericalGains']['EXP'] = @exp_to_add
+
+    if @enemy.ap != nil
+      rewards['numericalGains']['AP'] = @enemy.ap
+    end
+
+    data = { next_exp: @next_level_exp, player: @user.user_stat, exp_to_add: @exp_to_add, rewards: rewards }
     render :json => data
   end
 

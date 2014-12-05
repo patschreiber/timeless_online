@@ -96,53 +96,8 @@
                   %li.action
                     = link_to "Item 1", "#"
 
+= render :partial => 'victory_modal'
 
-      %button.btn.btn-defualt.btn-block#dev-button{ :data => {:toggle => "modal", :target => "#level-up-modal"} }
-        \.dev Button
-
-.modal.fade#winner-modal{ :tabindex => "-1", :role => "dialog", "aria-hidden" => true, "aria-labelledby" => "winner-modal-label"}
-  .modal-dialog
-    .modal-content
-      .modal-header
-        %button.close{ :data => {:dismiss => "modal"} }
-          %span{ "aria-hidden" => true }
-            &times;
-          %span.sr-only
-            Close
-        %h3.modal-title.text-center#winner-modal-label
-          Victory is yours!
-      .modal-body
-        .row
-          .col-xs-3
-            %h4.no-margin 
-              Lv.
-              %span#modal-player-level
-                = @user.user_stat.level
-          .col-xs-9
-            .progress.no-margin
-              .progress-bar.progress-bar-warning.player-exp-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: #{@percent_to_level}%;"}
-        .row
-          .col-xs-12
-            .text-center
-              .experience 
-                Experience: 
-                %span{ :class => 'current-experience' } 
-                  = @user.user_stat.current_experience
-                \/
-                %span{ :class => 'next-level-exp' }
-                  = @next_level_experience
-        .row
-          .col-xs-12
-            %h4
-              Rewards
-            %ul
-              %li#exp-reward
-              %li#ap-reward
-
-
-      .modal-footer
-        %button.btn.btn-primary{ :data => {:dismiss => "modal"} }
-          Continue
 
 //Prevents navigation away from page if battle is active
 :javascript

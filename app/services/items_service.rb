@@ -38,6 +38,9 @@ class ItemsService
       user_inventory.base_item_id = item.id
       user_inventory.quantity = 1
       user_inventory.save!
+
+      # Implicit return
+      new_item
     else 
       # See if an item is currently in the user inventory
       item_in_inventory = current_user.user_inventories.find_by_base_item_id(item.id)
@@ -52,6 +55,9 @@ class ItemsService
         item_in_inventory.quantity = item_in_inventory.quantity + 1
         item_in_inventory.save!
       end
+
+      # Implicit return
+      item
     end
   end
 
