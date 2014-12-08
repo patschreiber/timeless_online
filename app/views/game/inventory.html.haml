@@ -48,4 +48,57 @@
         .caption
           %h3
             Title
+  
+  .row
+    %h3
+      Tabled Loot Crate
+    .col-xs-12
+      %table.table-condensed.table-bordered{ :style => "background-color: white;" }
+        %thead
+          %tr
+            %th
+              Equipped
+            %th
+              
+            %th
+              Quantity
+            %th
+            %th
+        %tbody
+          %tr
+            %td
+              .ss-icon.ss-check.text-center.text-success
+            %td
+              %span
+                %img{ :src => "http://placehold.it/50x50" }
+              Chestpiece
+              %span
+                .caret  
+            %td
+              1
+            %td
+              %button.btn.btn-primary
+                Equip
+            %td
+              %span.ss-icon.ss-directleft
+
+          %tr
+            %td
+            %td
+              %span
+                %img{ :src => "http://placehold.it/50x50" }
+              Potion
+            %td
+              3
+            %td
+              %button.btn.btn-primary
+                Use
+            %td
+              %span.ss-icon.ss-directright
+
+
+
+
+
+
 
