@@ -39,21 +39,12 @@
 
     .col-sm-4
       #current-stats
-  .row
-    %h3
-      Loot Crate
-    .col-xs-3
-      = link_to "#", :class => "thumbnail" do
-        %img{ :src => "http://placehold.it/150x150" }
-        .caption
-          %h3
-            Title
   
   .row
     %h3
       Tabled Loot Crate
     .col-xs-12
-      %table.table-condensed.table-bordered{ :style => "background-color: white;" }
+      %table#loot-crate.table-condensed{ :style => "background-color: white;" }
         %thead
           %tr
             %th
@@ -65,36 +56,39 @@
             %th
             %th
         %tbody
-          %tr
-            %td
+          - @user_inventory_item_names.each do |item|
+            %tr{ :id => "item-id#{item.unique_item_id}" }
+
+          %tr#item-id-10000001
+            %td.equipped
               .ss-icon.ss-check.text-center.text-success
-            %td
+            %td.name
               %span
                 %img{ :src => "http://placehold.it/50x50" }
               Chestpiece
               %span
                 .caret  
-            %td
+            %td.quantity
               1
-            %td
+            %td.action
               %button.btn.btn-primary
                 Equip
-            %td
-              %span.ss-icon.ss-directleft
+            %td.delete.danger
+              %span.ss-icon.ss-trash
 
-          %tr
-            %td
-            %td
+          %tr#item-id-100001
+            %td.equipped
+            %td.name
               %span
                 %img{ :src => "http://placehold.it/50x50" }
               Potion
-            %td
+            %td.quantity
               3
-            %td
+            %td.action
               %button.btn.btn-primary
                 Use
-            %td
-              %span.ss-icon.ss-directright
+            %td.delete.danger
+              %span.ss-icon.ss-trash
 
 
 
