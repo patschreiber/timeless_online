@@ -12,7 +12,6 @@ class GameController < ApplicationController
   def inventory
     @user = User.find(current_user)
     @user_inventories = @user.user_inventories
-    @user_inventory_item_names = @user.user_inventories.generated_items
 
     # For each user inventory, determine if consumable item or equippable, then separate the two
   end
