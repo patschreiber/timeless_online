@@ -42,9 +42,11 @@
   
   .row
     %h3
-      Tabled Loot Crate
-    .col-xs-12
-      %table#loot-crate.table-condensed{ :style => "background-color: white;" }
+      Loot Crate
+    .col-md-6
+      %h4
+        Equippables
+      %table#loot-crate.table-condensed
         %thead
           %tr
             %th
@@ -56,37 +58,54 @@
             %th
             %th
         %tbody
+          - @user_inventories_equippables.each do |item|
+            %tr{ :id => "item-id-#{item.unique_item_id}"}
+              %td.equipped
+              %td.name
+                %span
+                  %img{ :src => "http://placehold.it/50x50" }
+                = item.generated_item.prefix_name 
+                = item.generated_item.name
+                = item.generated_item.suffix_name
+              %td.quantity
+                = item.quantity
+              %td.action
+                %button.btn.btn-primary
+                  Equip
+              %td.options
+                = link_to "#" do
+                  %span
+                    .ss-icon.ss-directright
 
-          %tr#item-id-10000001
-            %td.equipped
-              .ss-icon.ss-check.text-center.text-success
-            %td.name
-              %span
-                %img{ :src => "http://placehold.it/50x50" }
-              Chestpiece
-              %span
-                .caret  
-            %td.quantity
-              1
-            %td.action
-              %button.btn.btn-primary
-                Equip
-            %td.delete.danger
-              %span.ss-icon.ss-trash
+    .col-md-6
+      %h4
+        Consumables
+      %table#loot-crate.table-condensed
+        %thead
+          %tr
+            %th
+              
+            %th
+              Quantity
+            %th
+            %th
 
-          %tr#item-id-100001
-            %td.equipped
-            %td.name
-              %span
-                %img{ :src => "http://placehold.it/50x50" }
-              Potion
-            %td.quantity
-              3
-            %td.action
-              %button.btn.btn-primary
-                Use
-            %td.delete.danger
-              %span.ss-icon.ss-trash
+        %tbody
+          - @user_inventories_consumables.each do |item|
+            %tr{ :id => "item-id-#{item.unique_item_id}"}
+              %td.name
+                %span
+                  %img{ :src => "http://placehold.it/50x50" }
+                = item.item.name
+              %td.quantity
+                = item.quantity
+              %td.action
+                %button.btn.btn-primary
+                  Use
+              %td.options
+                = link_to "#" do
+                  %span
+                    .ss-icon.ss-directright
 
 
 
