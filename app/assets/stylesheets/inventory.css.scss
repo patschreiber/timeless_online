@@ -1,7 +1,7 @@
 @import 'colors';
 
 #loot-crate {
-  background-color: rgb(255,255,255);
+  background-color: $white;
   box-shadow: 0 0 1em rgba(0,0,0,0.8);
 }
 #loot-crate td.action {
@@ -15,7 +15,7 @@
   height: 100%;
 }
 #loot-crate tr:hover {
-  background-color: $light_grey;
+  background-color: $grey_1;
 }
 .options a:hover { 
   text-decoration: none;

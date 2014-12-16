@@ -14,6 +14,7 @@ Enemy.delete_all
 EnemyArea.delete_all
 EnemyLootTable.delete_all
 EnemySkill.delete_all
+EquipSlot.delete_all
 Item.delete_all
 ItemPrefix.delete_all
 ItemSuffix.delete_all
@@ -141,6 +142,71 @@ puts "Seeding enemy skills..."
   }.call
 puts "Done!"
 
+puts "Seeding equippable slots..."
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 1
+    equip_slot.name = "Head"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 2
+    equip_slot.name = "Neck"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 3
+    equip_slot.name = "Body"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 4
+    equip_slot.name = "Hand 1"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 5
+    equip_slot.name = "Hand 2"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 6
+    equip_slot.name = "Legs"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 7
+    equip_slot.name = "Feet"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 8
+    equip_slot.name = "Finger 1"
+    equip_slot.save!
+  }.call
+
+  lambda {
+    equip_slot = EquipSlot.new
+    equip_slot.id = 9
+    equip_slot.name = "Finger 2"
+    equip_slot.save!
+  }.call
+puts "Done!"
+
 puts "Seeding items..."
   lambda {
     item = Item.new
@@ -148,6 +214,8 @@ puts "Seeding items..."
     item.name = "Test Hoodie"
     item.description = "This isn't a hoodie, this is a test."
     item.can_add_uniqueness = 1
+    item.can_equip = 1
+    item.equip_slot = 3  
     item.min_defense = 2
     item.max_defense = 10
     item.save!
@@ -168,6 +236,8 @@ puts "Seeding items..."
     item.name = "Rare Test Trinket"
     item.description = "This is a rare, unreal trinket."
     item.can_add_uniqueness = 1
+    item.can_equip = 1
+    item.equip_slot = 2
     item.min_hp = 10
     item.max_hp = 30
     item.min_mp = 15

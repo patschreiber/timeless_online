@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141108125509) do
+ActiveRecord::Schema.define(version: 20141216030706) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -47,6 +47,12 @@ ActiveRecord::Schema.define(version: 20141108125509) do
   create_table "enemy_skills", force: true do |t|
     t.integer "enemy_id"
     t.integer "skill_id"
+  end
+
+  create_table "equip_slots", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "generated_items", force: true do |t|
@@ -102,6 +108,8 @@ ActiveRecord::Schema.define(version: 20141108125509) do
     t.string   "description"
     t.integer  "classification"
     t.boolean  "can_add_uniqueness"
+    t.boolean  "can_equip"
+    t.integer  "equip_slot"
     t.integer  "min_hp"
     t.integer  "max_hp"
     t.integer  "min_mp"
@@ -148,6 +156,7 @@ ActiveRecord::Schema.define(version: 20141108125509) do
     t.integer "base_item_id"
     t.string  "unique_item_id"
     t.integer "quantity"
+    t.boolean "equipped"
     t.integer "position"
   end
 
