@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141216030706) do
+ActiveRecord::Schema.define(version: 20141216033015) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 20141216030706) do
   end
 
   create_table "generated_items", force: true do |t|
-    t.integer  "base_item_id"
+    t.integer  "item_id"
     t.string   "unique_item_id"
     t.string   "prefix_name"
     t.string   "name"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(version: 20141216030706) do
     t.datetime "updated_at"
   end
 
-  add_index "generated_items", ["base_item_id"], name: "index_generated_items_on_base_item_id", using: :btree
+  add_index "generated_items", ["item_id"], name: "index_generated_items_on_item_id", using: :btree
   add_index "generated_items", ["unique_item_id"], name: "index_generated_items_on_unique_item_id", unique: true, using: :btree
 
   create_table "item_prefixes", force: true do |t|
@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(version: 20141216030706) do
 
   create_table "user_inventories", force: true do |t|
     t.integer "user_id"
-    t.integer "base_item_id"
+    t.integer "item_id"
     t.string  "unique_item_id"
     t.integer "quantity"
     t.boolean "equipped"

@@ -35,7 +35,7 @@ class ItemsService
       user_inventory = UserInventory.new
       user_inventory.user_id = current_user.id
       user_inventory.unique_item_id = new_item.unique_item_id
-      user_inventory.base_item_id = item.id
+      user_inventory.item_id = item.id
       user_inventory.quantity = 1
       user_inventory.save!
 
@@ -43,12 +43,12 @@ class ItemsService
       new_item
     else 
       # See if an item is currently in the user inventory
-      item_in_inventory = current_user.user_inventories.find_by_base_item_id(item.id)
+      item_in_inventory = current_user.user_inventories.find_by_item_id(item.id)
 
       if item_in_inventory.nil?
         user_inventory = UserInventory.new
         user_inventory.user_id = current_user.id
-        user_inventory.base_item_id = item.id
+        user_inventory.item_id = item.id
         user_inventory.quantity = 1
         user_inventory.save!
       else
@@ -71,13 +71,12 @@ class ItemsService
     suffix_threshold = 5
 
     new_item = GeneratedItem.new
-    new_item.base_item_id = item.id
+    new_item.item_id = item.id
     new_item.name = item.name
     new_item.description = item.description
 
     unless item.can_equip.nil?
       new_item.can_equip = true
-      new_item.equip_slot = item.equip_slot
     end
 
     # Compute item stat values from min and max
