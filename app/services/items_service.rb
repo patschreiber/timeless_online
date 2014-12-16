@@ -75,6 +75,11 @@ class ItemsService
     new_item.name = item.name
     new_item.description = item.description
 
+    unless item.can_equip.nil?
+      new_item.can_equip = true
+      new_item.equip_slot = item.equip_slot
+    end
+
     # Compute item stat values from min and max
     unless item.min_hp.nil?
       new_item.hp = (item.min_hp..item.max_hp).to_a.sample
