@@ -1,45 +1,46 @@
 - content_for :body_class, "inventory"
 
-.container
-  .row
-    %h1
-      #{current_user.username.capitalize}'s
-      Inventory
-  %hr
-  .row
-    %h3 
-      Currently Equipped
-    .col-sm-8
-      .row
-        .col-xs-4.col-xs-offset-4
-          .well#equipped-head
-        .col-xs-4
-          .well#equipped-neck
-      .row
-        .col-xs-4
-          .well#equpped-arm-1
-        .col-xs-4
-          .well#equipped-body
-        .col-xs-4
-          .well#equipped-arm-2
-      .row
-        .col-xs-4
-          .well#equipped-hand-1
-        .col-xs-4
-          .well#equipped-legs
-        .col-xs-4
-          .well#equipped-hand-2
-      .row
-        .col-xs-4
-          .well#equipped-ring-1
-        .col-xs-4
-          .well#equipped-feet
-        .col-xs-4
-          .well#equipped-ring-2
+.jumbotron.inventory-jumbotron
+  .container
+    .row
+      .col-sm-6
+        .text-center
+          %h2
+            #{current_user.username.capitalize}'s
+            Inventory
+          .row
+            .col-xs-6
+              %h2 #{current_user.user_stat.hp}
+              %p
+                .progress
+                  .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 100%;"}
+              %h4 HP
+            .col-xs-6
+              %h2 #{current_user.user_stat.mp}
+              %p
+                .progress
+                  .progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 100%;"}
+              %h4 MP
+          .margin-tall-1
+          .row
+            .col-xs-4
+              %h3 #{current_user.user_stat.base_attack}
+              %h4 Attack
+            .col-xs-4
+              %h3 #{current_user.user_stat.base_defense}
+              %h4 Defense
 
-    .col-sm-4
-      #current-stats
-  
+
+      .col-sm-6
+        .text-center
+          %h2
+            Currently Equipped
+
+
+
+
+
+.container
   .row
     %h3
       Loot Crate

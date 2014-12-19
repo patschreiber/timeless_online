@@ -22,5 +22,36 @@ body {
 }
 
 p {
-  color: $grey_3;
+  color: $grey_2;
+}
+
+.inventory-jumbotron {
+  background-color: $grey_7;
+  color: $grey_2;
+}
+.progress {
+  height: 1px;
+  background-color: $black;
+}
+.progress-bar {
+  background-color: $white;
+}
+.hp-progress-bar {
+  background-color: red;
+}
+.margin-tall-1 {
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+.margin-tall-2 {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.margin-tall-3 {
+  margin-top: 75px;
+  margin-bottom: 75px;
+}
+.margin-tall-4 {
+  margin-top: 100px;
+  margin-bottom: 100px;
 }
