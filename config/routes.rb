@@ -26,6 +26,7 @@ Wizardtower::Application.routes.draw do
   post '/battle-action' => 'battle#battle_action'
   post '/post-battle-update' => 'battle#post_battle_update'
   post '/enemy-action' => 'battle#enemy_action'
+  post '/equip' => 'inventory#equip_item'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
