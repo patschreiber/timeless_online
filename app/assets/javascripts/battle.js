@@ -280,24 +280,26 @@ function setEnemyHp(enemyHp) {
 
 
 function enemyAi() {
-  enemyAtbReady = false;
-  var playerHp = getPlayerHp();
-  var promise = enemyAction();
+  if (winConditionCheck() == false) {
+    enemyAtbReady = false;
+    var playerHp = getPlayerHp();
+    var promise = enemyAction();
 
-  promise.done(function(data) {
-    console.log(data);
+    promise.done(function(data) {
+      console.log(data);
 
 
-    // If the basic attack flag is true, just apply the damage
-    if (data.basic_attack == true) {
-      playerHp = playerHp - data.attack; 
-      setPlayerHp(playerHp);
-      loseConditionCheck();
-    }
-    else {
+      // If the basic attack flag is true, just apply the damage
+      if (data.basic_attack == true) {
+        playerHp = playerHp - data.attack; 
+        setPlayerHp(playerHp);
+        loseConditionCheck();
+      }
+      else {
 
-    }
-  });
+      }
+    });
+  }
 }
 
 function enemyAction() {

@@ -12,9 +12,6 @@ body {
 .ethereal {
   background-color: rgba(0,0,0,0.4);
 }
-.no-margin {
-  margin: 0;
-}
 
 .danger {
   background-color: $danger;
@@ -29,15 +26,29 @@ p {
   background-color: $grey_7;
   color: $grey_2;
 }
-.progress {
-  height: 1px;
-  background-color: $black;
+.inventory-jumbotron section {
+  margin-top: 50px;
+  margin-bottom: 50px;
 }
-.progress-bar {
+
+.progress-white {
+  height: 1px;
+}
+.progress-white {
+  background-color: $grey_4;
+}
+.progress-bar-white {
   background-color: $white;
 }
 .hp-progress-bar {
   background-color: red;
+}
+.atb-progress {
+  height: 2px;
+}
+
+.no-margin {
+  margin: 0;
 }
 .margin-tall-1 {
   margin-top: 25px;
