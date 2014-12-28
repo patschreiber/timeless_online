@@ -84,8 +84,10 @@
             %th
         %tbody
           - @user_inventories_equippables.each do |item|
-            %tr{ :id => "item-id-#{item.unique_item_id}"}
+            %tr{ :id => "item-#{item.unique_item_id}"}
               %td.equipped
+                - if item.equipped
+                  .ss-icon.ss-check.text-center.text-success
               %td.name
                 %span
                   %img{ :src => "http://placehold.it/50x50" }
@@ -95,7 +97,7 @@
               %td.quantity
                 = item.quantity
               %td.action
-                %button.btn.btn-primary
+                %button.btn.btn-primary.equip-item{ :value => "#{item.unique_item_id}" }
                   Equip
               %td.options
                 = link_to "#" do
@@ -125,7 +127,7 @@
               %td.quantity
                 = item.quantity
               %td.action
-                %button.btn.btn-primary
+                %button.btn.btn-primary.use-item
                   Use
               %td.options
                 = link_to "#" do

@@ -10,4 +10,9 @@ class InventoryController < ApplicationController
 
     # For each user inventory, determine if consumable item or equippable, then separate the two
   end
+
+  def equip_item
+    data = {}
+    render :json => data
+  end
 end
