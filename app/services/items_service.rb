@@ -74,6 +74,7 @@ class ItemsService
     new_item.item_id = item.id
     new_item.name = item.name
     new_item.description = item.description
+    new_item.can_equip = 1
 
     unless item.can_equip.nil?
       new_item.can_equip = true
