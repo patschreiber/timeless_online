@@ -75,6 +75,8 @@ class ItemsService
     new_item.name = item.name
     new_item.description = item.description
     new_item.can_equip = 1
+    Rails.logger.debug item
+    new_item.equip_slot = item.equip_slot
 
     unless item.can_equip.nil?
       new_item.can_equip = true
