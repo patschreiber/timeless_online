@@ -15,7 +15,7 @@ $(document).ready(function() {
       url: '/equip',
       data: data,
       success: function(data) {
-
+        console.log(data);
       },
       error: function() {},
       complete: function() {},
