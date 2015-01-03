@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 20150103045119) do
 
   create_table "user_equipped_items", force: true do |t|
     t.integer "user_id"
-    t.string  "unique_item_id"
     t.integer "equip_slot"
+    t.string  "unique_item_id"
   end
 
   create_table "user_inventories", force: true do |t|

@@ -25,6 +25,15 @@ class RegistrationsController < Devise::RegistrationsController
           :user_id => resource.id,
           :area_id => 1
         )
+
+        #Create all equippable item slots for user
+        @equip_slots = EquipSlot.all
+        @equip_slots.each do |slot|
+          @user_equipped_item = UserEquippedItem.create(
+            :user_id => resource.id,
+            :equip_slot => slot.id
+          )
+        end
       end
     end
   end
