@@ -11,9 +11,12 @@ class InventoryController < ApplicationController
     # For each user inventory, determine if consumable item or equippable, then separate the two
   end
 
-  def equip_item
+  def equip_or_unequip_item
     @user = current_user
-    item_to_equip_id = params['item_to_equip']
+    item_to_equip_id = params['item_to_modify']
+
+    #unequip_item, true = ok to unequip item, false = do not unequip item
+    unequip_item = params['unequip_item']   
     data = {}
 
     # Get the generated unique item id in order to see if the item is equippable or not
@@ -33,10 +36,13 @@ class InventoryController < ApplicationController
         # There is no need to send a whole item object back for the unequip
         data['unequipped_item'] = @user_equipped_item_slot.unique_item_id
       end
-
-      # Equip new item
-      @user_equipped_item_slot.unique_item_id = item_to_equip_id
+      Rails.logger.debug data['unequipped_item']
+      Rails.logger.debug unequip_item
+      
+      # Equip or unequip item
+      unequip_item == 'true' ? @user_equipped_item_slot.unique_item_id = nil : @user_equipped_item_slot.unique_item_id = item_to_equip_id
       @user_equipped_item_slot.save!
+      Rails.logger.debug data['unequipped_item']
     end
 
     data['equipped_item'] = base_item
