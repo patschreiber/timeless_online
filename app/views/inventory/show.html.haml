@@ -98,8 +98,42 @@
                     %span
                       .ss-icon.ss-directright
                     .popover-content.hide
-                      %p
-                        Hello
+                      %table.table
+                        %tbody
+                          %tr
+                            %td
+                              Health
+                            %td
+                              - if item.generated_item.hp.present?
+                                = item.generated_item.hp
+                              - else
+                                \--
+                          %tr
+                            %td
+                              MP
+                            %td
+                              - if item.generated_item.mp.present?
+                                = item.generated_item.mp
+                              - else
+                                \--        
+                          %tr
+                            %td
+                              Attack
+                            %td
+                              - if item.generated_item.attack.present?
+                                = item.generated_item.attack
+                              - else
+                                \--
+                          %tr
+                            %td
+                              Defense
+                            %td
+                              - if item.generated_item.defense.present?
+                                = item.generated_item.defense
+                              - else
+                                \--
+
+
       - else
         Just an empty, dusty chest  
 
