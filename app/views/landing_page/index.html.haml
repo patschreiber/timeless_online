@@ -8,7 +8,22 @@
 - elsif current_user.try(:admin?)
   %div
 - else
-  %section
-    %p
-      Mana is conjured from the earth and is used by the socerer to make incredible structures. Every time the sorcerer draws upon this amazing energy, it takes a little out of them. You will need to recharge after an amount of conjuring. Even an experienced sorcerer like yourself will need to recover every once in a while. 
+  .jumbotron
+    .container
+      .row
+        .col-sm-6
+          %h2
+            Timeless Online
+          %h3
+            Take a journey through time and space. Battle monsters, collect loot, and trade with your friends.
+          = link_to "Play Now!", signup_path, :class => "btn btn-lg btn-success"
+        .col-sm-6
 
+  .container
+    .row
+      .col-sm-4
+        .well
+      .col-sm-4
+        .well
+      .col-sm-4
+        .well
