@@ -44,4 +44,16 @@ $(document).ready(function() {
       complete: function() {}
     });
   });
+
+  $('.options').on('click', function() {
+    $(this).popover({
+      html: true,
+      trigger: 'manual',
+      placement: 'left',
+      viewport: 'body',
+      content: function() {
+        return $(this).find('.popover-content').html();
+      }
+    }).popover('toggle');
+  });
 });

@@ -23,14 +23,6 @@
                     .progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 50%;"}
                 %h4 MP
 
-            .row
-              .col-xs-4
-                %h3 #{current_user.user_stat.base_attack}
-                %h4 Attack
-              .col-xs-4
-                %h3 #{current_user.user_stat.base_defense}
-                %h4 Defense
-
         .row
           .col-xs-12
             %section
@@ -53,56 +45,63 @@
                   %h4
                     5/10
 
-
-
       .col-sm-6
         .text-center
           %h2
-            Currently Equipped
-
-
-
-
+            Current Stats
+          .row
+            .col-xs-6
+              %h3 #{current_user.user_stat.base_attack}
+              %h4 Attack
+            .col-xs-6
+              %h3 #{current_user.user_stat.base_defense}
+              %h4 Defense
 
 .container
   .row
     %h3
       Loot Crate
     .col-md-6
-      %h4
-        Equippables
-      %table#loot-crate.table-condensed
-        %thead
-          %tr
-            %th
-              Equipped
-            %th
-              
-            %th
-              Quantity
-            %th
-            %th
-        %tbody
-          - @user_inventories_equippables.each do |item|
-            %tr{ :id => "item-#{item.unique_item_id}"}
-              %td.equipped
-                - if item.equipped
-                  .ss-icon.ss-check.text-center.text-success
-              %td.name
-                %span
-                  %img{ :src => "http://placehold.it/50x50" }
-                = item.generated_item.prefix_name 
-                = item.generated_item.name
-                = item.generated_item.suffix_name
-              %td.quantity
-                = item.quantity
-              %td.action
-                %button.btn.btn-primary.equip-item{ :value => "#{item.unique_item_id}" }
-                  Equip
-              %td.options
-                = link_to "#" do
+      - if @user_inventories_equippables.present?
+        %h4
+          Equippables
+        %table#loot-crate.table-condensed
+          %thead
+            %tr
+              %th
+                Equipped
+              %th
+                
+              %th
+                Quantity
+              %th
+              %th
+          %tbody
+            - @user_inventories_equippables.each do |item|
+              %tr.item{ :id => "item-#{item.unique_item_id}" }
+                %td.equipped
+                  - if item.equipped
+                    .ss-icon.ss-check.text-center.text-success
+                %td.name
                   %span
-                    .ss-icon.ss-directright
+                    %img{ :src => "http://placehold.it/50x50" }
+                  = item.generated_item.prefix_name 
+                  = item.generated_item.name
+                  = item.generated_item.suffix_name
+                %td.quantity
+                  = item.quantity
+                %td.action
+                  %button.btn.btn-primary.equip-item{ :value => "#{item.unique_item_id}" }
+                    Equip
+                %td.options{ :data => {:toggle => "popover", :trigger => "focus", :title => "#{item.generated_item.prefix_name} #{item.generated_item.name} #{item.generated_item.suffix_name}"} }
+                  = link_to "#" do
+                    %span
+                      .ss-icon.ss-directright
+                    .popover-content.hide
+                      %p
+                        Hello
+      - else
+        Just an empty, dusty chest  
 
     .col-md-6
       %h4
