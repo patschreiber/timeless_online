@@ -8,7 +8,7 @@
   margin-top: 10px;
 }
 body {
-  background-color: $grey_3;
+  /*background-color: $grey_3;*/
   /*background: url('dusk.png') bottom fixed;*/
 }
 .ethereal {
@@ -31,16 +31,6 @@ p {
 .inventory-jumbotron section {
   margin-top: 50px;
   margin-bottom: 50px;
-}
-
-.progress-white {
-  height: 1px;
-}
-.progress-white {
-  background-color: $grey_4;
-}
-.progress-bar-white {
-  background-color: $white;
 }
 .hp-progress-bar {
   background-color: red;
