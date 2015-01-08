@@ -152,7 +152,7 @@
 
         %tbody
           - @user_inventories_consumables.each do |item|
-            %tr{ :id => "item-id-#{item.unique_item_id}"}
+            %tr{ :id => "item-id-#{item.unique_item_id}", :data => {:toggle => "popover", :trigger => "focus", :title => "#{item.item.name}"} }
               %td.name
                 %span
                   %img{ :src => "http://placehold.it/50x50" }
@@ -166,7 +166,9 @@
                 = link_to "#" do
                   %span
                     .ss-icon.ss-directright
-
+                  .popover-content.hide
+                    %p
+                      = item.item.description
 
 
 
