@@ -36,13 +36,10 @@ class InventoryController < ApplicationController
         # There is no need to send a whole item object back for the unequip
         data['unequipped_item'] = @user_equipped_item_slot.unique_item_id
       end
-      Rails.logger.debug data['unequipped_item']
-      Rails.logger.debug unequip_item
       
       # Equip or unequip item
       unequip_item == 'true' ? @user_equipped_item_slot.unique_item_id = nil : @user_equipped_item_slot.unique_item_id = item_to_equip_id
       @user_equipped_item_slot.save!
-      Rails.logger.debug data['unequipped_item']
     end
 
     data['equipped_item'] = base_item
