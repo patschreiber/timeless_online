@@ -45,7 +45,7 @@ class BattleController < ApplicationController
     # Get items from the enemy, if any
     if @enemy.enemy_loot_tables.exists?
       item_from_enemy = ItemsService.generate_item_from_enemy( @enemy )
-      reward_item = ItemsService.generate_uniqueness_or_save_item( current_user, item_from_enemy )
+      reward_item = ItemsService.save_item_to_inventory( current_user, item_from_enemy )
 
       # Adds multiple items to the reward hash if multiple items were earned
       rewards['items'].push(reward_item)

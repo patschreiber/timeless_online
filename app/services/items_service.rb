@@ -1,10 +1,8 @@
 class ItemsService
 
-  def generate_item
-  end
-
+  # Determine which loot table to pull an item from and find base item
+  # returns item_found, base item to add uniqueness to
   def self.generate_item_from_enemy(enemy)
-    # Determine which loot table to pull an item from and find base item
     random = Random.rand(0..10)
     common_item_threshold = 7
     uncommon_item_threshold = 9
@@ -25,9 +23,13 @@ class ItemsService
     item_found
   end
 
-  def self.generate_uniqueness_or_save_item(current_user, item)
 
-    # Generate a unique item or save regular item
+  # Adds a new entry into a user's inventory or increments the quantity available in the user's 
+  # inventory if there is already one or more available of the item being added.
+  # Generate a unique item or save regular item
+  # returns item, saved item object
+  def self.save_item_to_inventory(current_user, item)
+
     if ( item.can_add_uniqueness == true )
       new_item = self.add_uniqueness(item)
       new_item.save!
@@ -61,6 +63,10 @@ class ItemsService
     end
   end
 
+
+  # Computes a stat value for the newly generated item. Determines if there should be a prefix or suffix  
+  # added to the item. 
+  # returns new_item, GeneratedItem object
   def self.add_uniqueness(item)
     # See if we're even going to add a random affix/suffix
     random_roll_prefix = Random.rand(0..10)
@@ -109,6 +115,7 @@ class ItemsService
       add_prefix_or_suffix_effects(new_item, 'suffix')
     end
 
+    # Implicit return
     new_item
   end
 
@@ -153,6 +160,7 @@ class ItemsService
       item.defense = (item.defense + defense_mod >= 0) ? (item.defense + defense_mod) : item.defense = 0
     end 
 
+    # Implicit return
     item
   end
 end
