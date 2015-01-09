@@ -118,14 +118,10 @@ class ItemsService
   # returns item
   def self.add_prefix_or_suffix_effects(item, designation)
     if designation == 'prefix'
-      Rails.logger.debug "---------------------"
-      Rails.logger.debug designation
       prefixes = ItemPrefix.all
       modifier = prefixes.sample
       item.prefix_name = modifier.name
     elsif designation == 'suffix'
-      Rails.logger.debug "+++++++++++++++++++++"
-      Rails.logger.debug designation
       suffixes = ItemSuffix.all
       modifier = suffixes.sample
       item.suffix_name = modifier.name
