@@ -79,9 +79,10 @@
           %tbody
             - @user_inventories_equippables.each do |item|
               %tr.item{ :id => "item-#{item.unique_item_id}" }
-                %td.equipped
-                  - if item.equipped
-                    .ss-icon.ss-check.text-center.text-success
+                - if item.equipped
+                  %td.equipped.ss-icon.ss-check.text-center.text-success
+                - else
+                  %td.equipped
                 %td.name
                   %span
                     %img{ :src => "http://placehold.it/50x50" }
@@ -91,8 +92,12 @@
                 %td.quantity
                   = item.quantity
                 %td.action
-                  %button.btn.btn-primary.equip-item{ :value => "#{item.unique_item_id}" }
-                    Equip
+                  - if item.equipped
+                    %button.btn.btn-primary.equip-item.unequippable{ :value => "#{item.unique_item_id}" }
+                      Unequip                  
+                  - else
+                    %button.btn.btn-primary.equip-item{ :value => "#{item.unique_item_id}" }
+                      Equip
                 %td.options{ :data => {:toggle => "popover", :trigger => "focus", :title => "#{item.generated_item.prefix_name} #{item.generated_item.name} #{item.generated_item.suffix_name}"} }
                   = link_to "#" do
                     %span

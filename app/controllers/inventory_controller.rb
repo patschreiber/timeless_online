@@ -4,11 +4,10 @@ class InventoryController < ApplicationController
   end
 
   def show
+    # For each user inventory, determine if consumable item or equippable, then separate the two
     @user = current_user
     @user_inventories_consumables = @user.user_inventories.where(unique_item_id: nil)
     @user_inventories_equippables = @user.user_inventories.where.not(unique_item_id: nil)
-
-    # For each user inventory, determine if consumable item or equippable, then separate the two
   end
 
   def equip_or_unequip_item
@@ -32,13 +31,25 @@ class InventoryController < ApplicationController
       # Check if item in slot is already equipped with a different item and unequip if necessary
       # There is already another item equipped
       if @user_equipped_item_slot.unique_item_id.present?
+        # Set 'equipped' to null in user_inventories
+        @user_inventory_unequip = @user.user_inventories.find_by_unique_item_id(@user_equipped_item_slot.unique_item_id)
+        @user_inventory_unequip.equipped = nil
+        @user_inventory_unequip.save!
         # We're only going to return the unique_item_id because we only need to unequip the item.
         # There is no need to send a whole item object back for the unequip
         data['unequipped_item'] = @user_equipped_item_slot.unique_item_id
       end
       
       # Equip or unequip item
-      unequip_item == 'true' ? @user_equipped_item_slot.unique_item_id = nil : @user_equipped_item_slot.unique_item_id = item_to_equip_id
+      if unequip_item == 'true'
+        @user_equipped_item_slot.unique_item_id = nil
+        @item_to_equip_in_inventory.equipped = nil
+      else 
+        @user_equipped_item_slot.unique_item_id = item_to_equip_id
+        @item_to_equip_in_inventory.equipped = 1
+      end
+
+      @item_to_equip_in_inventory.save!
       @user_equipped_item_slot.save!
     end
 
