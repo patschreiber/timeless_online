@@ -101,66 +101,62 @@ class ItemsService
     # Now add any stat buffs/debuffs from affixes, stats cannot go in the negative
     # Prefix
     if random_roll_prefix > prefix_threshold
-      item_prefixes = ItemPrefix.all
-      item_prefix = item_prefixes.sample
-      new_item.prefix_name = item_prefix.name
-
-      # HP
-      unless item_prefix.min_hp_modifier.nil? || new_item.hp.nil?
-        hp_mod = (item_prefix.min_hp_modifier..item_prefix.max_hp_modifier).to_a.sample
-        new_item.hp = (new_item.hp + hp_mod >= 0) ? (new_item.hp + hp_mod) : new_item.hp = 0
-      end
-
-      # MP
-      unless item_prefix.min_mp_modifier.nil? || new_item.mp.nil?
-         mp_mod = (item_prefix.min_mp_modifier..item_prefix.max_mp_modifier).to_a.sample
-        new_item.mp = (new_item.mp + mp_mod >= 0) ? (new_item.mp + mp_mod) : new_item.mp = 0
-      end
-
-      # Attack
-      unless item_prefix.min_attack_modifier.nil? || new_item.attack.nil?
-         attack_mod = (item_prefix.min_attack_modifier..item_prefix.max_attack_modifier).to_a.sample
-        new_item.attack = (new_item.attack + attack_mod >= 0) ? (new_item.attack + attack_mod) : new_item.attack = 0
-      end
-
-      # Defense
-      unless item_prefix.min_defense_modifier.nil? || new_item.defense.nil?
-         defense_mod = (item_prefix.min_defense_modifier..item_prefix.max_defense_modifier).to_a.sample
-        new_item.defense = (new_item.defense + defense_mod >= 0) ? (new_item.defense + defense_mod) : new_item.defense = 0
-      end   
+      add_prefix_or_suffix_effects(new_item, 'prefix')
     end
 
     # Suffix
     if random_roll_suffix > suffix_threshold
-      item_suffixes = ItemSuffix.all
-      item_suffix = item_suffixes.sample
-      new_item.suffix_name = item_suffix.name
-
-      # HP
-      unless item_suffix.min_hp_modifier.nil? || new_item.hp.nil?
-        hp_mod = (item_suffix.min_hp_modifier..item_suffix.max_hp_modifier).to_a.sample
-        new_item.hp = (new_item.hp + hp_mod >= 0) ? (new_item.hp + hp_mod) : new_item.hp = 0
-      end
-
-      # MP
-      unless item_suffix.min_mp_modifier.nil? || new_item.mp.nil?
-         mp_mod = (item_suffix.min_mp_modifier..item_suffix.max_mp_modifier).to_a.sample
-        new_item.mp = (new_item.mp + mp_mod >= 0) ? (new_item.mp + mp_mod) : new_item.mp = 0
-      end
-
-      # Attack
-      unless item_suffix.min_attack_modifier.nil? || new_item.attack.nil?
-         attack_mod = (item_suffix.min_attack_modifier..item_suffix.max_attack_modifier).to_a.sample
-        new_item.attack = (new_item.attack + attack_mod >= 0) ? (new_item.attack + attack_mod) : new_item.attack = 0
-      end
-
-      # Defense
-      unless item_suffix.min_defense_modifier.nil? || new_item.defense.nil?
-         defense_mod = (item_suffix.min_defense_modifier..item_suffix.max_defense_modifier).to_a.sample
-        new_item.defense = (new_item.defense + defense_mod >= 0) ? (new_item.defense + defense_mod) : new_item.defense = 0
-      end 
+      add_prefix_or_suffix_effects(new_item, 'suffix')
     end
 
     new_item
+  end
+
+
+  # Takes the item being generated and a designation of 'prefix' or 'suffix' and generates random
+  # values based on the prefix or suffix values defined in item_prefixes or item_suffixes table.
+  # returns item
+  def self.add_prefix_or_suffix_effects(item, designation)
+    if designation == 'prefix'
+      Rails.logger.debug "---------------------"
+      Rails.logger.debug designation
+      prefixes = ItemPrefix.all
+      modifier = prefixes.sample
+      item.prefix_name = modifier.name
+    elsif designation == 'suffix'
+      Rails.logger.debug "+++++++++++++++++++++"
+      Rails.logger.debug designation
+      suffixes = ItemSuffix.all
+      modifier = suffixes.sample
+      item.suffix_name = modifier.name
+    else
+      raise "designation must be prefix or suffix"
+    end
+
+    # HP
+    unless modifier.min_hp_modifier.nil? || item.hp.nil?
+      hp_mod = (modifier.min_hp_modifier..modifier.max_hp_modifier).to_a.sample
+      item.hp = (item.hp + hp_mod >= 0) ? (item.hp + hp_mod) : item.hp = 0
+    end
+
+    # MP
+    unless modifier.min_mp_modifier.nil? || item.mp.nil?
+       mp_mod = (modifier.min_mp_modifier..modifier.max_mp_modifier).to_a.sample
+      item.mp = (item.mp + mp_mod >= 0) ? (item.mp + mp_mod) : item.mp = 0
+    end
+
+    # Attack
+    unless modifier.min_attack_modifier.nil? || item.attack.nil?
+       attack_mod = (modifier.min_attack_modifier..modifier.max_attack_modifier).to_a.sample
+      item.attack = (item.attack + attack_mod >= 0) ? (item.attack + attack_mod) : item.attack = 0
+    end
+
+    # Defense
+    unless modifier.min_defense_modifier.nil? || item.defense.nil?
+       defense_mod = (modifier.min_defense_modifier..modifier.max_defense_modifier).to_a.sample
+      item.defense = (item.defense + defense_mod >= 0) ? (item.defense + defense_mod) : item.defense = 0
+    end 
+
+    item
   end
 end
