@@ -7,6 +7,7 @@
 #  area_id  :integer
 #
 
+
 class EnemyArea < ActiveRecord::Base
   belongs_to :enemy
   belongs_to :area

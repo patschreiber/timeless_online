@@ -7,9 +7,11 @@
 #  description    :string(255)
 #  classification :integer
 #  damage         :integer
+#  ap             :integer
 #  created_at     :datetime
 #  updated_at     :datetime
 #
+
 
 
 class Skill < ActiveRecord::Base

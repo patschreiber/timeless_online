@@ -2,10 +2,15 @@
 #
 # Table name: user_inventories
 #
-#  id       :integer          not null, primary key
-#  item_id  :integer
-#  quantity :integer
+#  id             :integer          not null, primary key
+#  user_id        :integer
+#  item_id        :integer
+#  unique_item_id :string(255)
+#  quantity       :integer
+#  equipped       :boolean
+#  position       :integer
 #
+
 
 
 class UserInventory < ActiveRecord::Base

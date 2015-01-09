@@ -7,11 +7,17 @@
 #  description    :string(255)
 #  classification :integer
 #  level          :integer
-#  base_damage    :integer
+#  experience     :integer
+#  ap             :integer
+#  hp             :integer
+#  mp             :integer
+#  base_attack    :integer
 #  base_defense   :integer
+#  speed          :integer
 #  created_at     :datetime
 #  updated_at     :datetime
 #
+
 
 class Enemy < ActiveRecord::Base
   has_many :enemy_areas

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: levels
+#
+#  id                  :integer          not null, primary key
+#  level               :integer
+#  experience_required :integer
+#
+
 class Level < ActiveRecord::Base
 
   def self.determine_player_next_level_experience_requirement( level )
