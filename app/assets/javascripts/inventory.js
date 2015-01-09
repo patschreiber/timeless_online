@@ -3,7 +3,11 @@ $(document).ready(function() {
     e.preventDefault();
   });
 
+
   // AJAX request for equipping
+  // dataToSend: 
+  //  itemtoModify: string, ex. 996e6bcebcca55ecbac4f8b3bc99b33634b0b0ef
+  //  unequippable: boolean
   $('.equip-item').on('click', function() {
     // Get the unique item id 
     var itemToModify = $(this);
@@ -20,8 +24,6 @@ $(document).ready(function() {
       url: '/equip',
       data: data,
       success: function(data) {
-        console.log(data);
-
         // Equip item
         var equipped_item_inventory_row = $('#item-' + data.equipped_item.unique_item_id);
 
@@ -45,6 +47,9 @@ $(document).ready(function() {
     });
   });
 
+
+  // Initiates popover content on elements with class .options that displays html content contained within 
+  // class .popover-content that's within the .option element
   $('.options').on('click', function() {
     $(this).popover({
       html: true,
