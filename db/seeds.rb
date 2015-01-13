@@ -76,6 +76,22 @@ puts "Seeding enemies..."
     enemy.speed = 105
     enemy.save!
   }.call
+
+  lambda {
+    enemy = Enemy.new
+    enemy.id = 1002
+    enemy.name = "Blitzer"
+    enemy.description = "Fast little imp."
+    enemy.level = 2
+    enemy.experience = 12
+    enemy.ap = 1
+    enemy.hp = 15
+    enemy.mp = 10
+    enemy.base_attack = 1
+    enemy.base_defense = 2
+    enemy.speed = 50
+    enemy.save!
+  }.call
 puts "Done!"
 
 puts "Seeding enemy areas..."
@@ -91,6 +107,13 @@ puts "Seeding enemy area 1"
     enemy_area = EnemyArea.new
     enemy_area.enemy_id = 1001
     enemy_area.area_id = 1
+    enemy_area.save!
+  }.call
+
+  lambda {
+    enemy_area = EnemyArea.new
+    enemy_area.enemy_id = 1002
+    enemy_area.area_id = 2
     enemy_area.save!
   }.call
 puts "Done!"
@@ -218,6 +241,7 @@ puts "Seeding items..."
     item.equip_slot = 3  
     item.min_defense = 2
     item.max_defense = 10
+    item.value = 10
     item.save!
   }.call
 
@@ -228,6 +252,7 @@ puts "Seeding items..."
     item.description = "This is an uncommon book filled with all sorts of useless information."
     item.can_add_uniqueness = 0
     item.save!
+    item.value = 150
   }.call
 
   lambda {
@@ -242,6 +267,7 @@ puts "Seeding items..."
     item.max_hp = 30
     item.min_mp = 15
     item.max_mp = 35
+    item.value = nil
     item.save!
   }.call
 puts "Done!"
@@ -296,6 +322,15 @@ puts "Seeding Item Suffixes..."
     item_suffix.max_defense_modifier = 10
     item_suffix.save!
   }.call
+
+  lambda {
+    item_suffix = ItemSuffix.new
+    item_suffix.name = "of Wealth"
+    item_suffix.min_value_modifier = 1000
+    item_suffix.max_value_modifier = 1000
+    item_suffix.save!
+  }.call
+
 puts "Done!"
 
 

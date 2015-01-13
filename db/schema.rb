@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150103051026) do
+ActiveRecord::Schema.define(version: 20150113044307) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150103051026) do
     t.integer  "mp"
     t.integer  "attack"
     t.integer  "defense"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -88,6 +89,8 @@ ActiveRecord::Schema.define(version: 20150103051026) do
     t.integer "max_defense_modifier"
     t.float   "min_speed_modifier"
     t.float   "max_speed_modifier"
+    t.integer "min_value_modifier"
+    t.integer "max_value_modifier"
   end
 
   create_table "item_suffixes", force: true do |t|
@@ -102,6 +105,8 @@ ActiveRecord::Schema.define(version: 20150103051026) do
     t.integer "max_defense_modifier"
     t.float   "min_speed_modifier"
     t.float   "max_speed_modifier"
+    t.integer "min_value_modifier"
+    t.integer "max_value_modifier"
   end
 
   create_table "items", force: true do |t|
@@ -119,6 +124,7 @@ ActiveRecord::Schema.define(version: 20150103051026) do
     t.integer  "max_attack"
     t.integer  "min_defense"
     t.integer  "max_defense"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

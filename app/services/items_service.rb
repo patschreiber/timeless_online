@@ -82,6 +82,7 @@ class ItemsService
     new_item.description = item.description
     new_item.can_equip = 1
     new_item.equip_slot = item.equip_slot
+    new_item.value = item.value
 
     unless item.can_equip.nil?
       new_item.can_equip = true
@@ -156,9 +157,15 @@ class ItemsService
 
     # Defense
     unless modifier.min_defense_modifier.nil? || item.defense.nil?
-       defense_mod = (modifier.min_defense_modifier..modifier.max_defense_modifier).to_a.sample
+      defense_mod = (modifier.min_defense_modifier..modifier.max_defense_modifier).to_a.sample
       item.defense = (item.defense + defense_mod >= 0) ? (item.defense + defense_mod) : item.defense = 0
     end 
+
+    # Value
+    unless modifier.min_value_modifier.nil? || item.value.nil?
+      value_mod = (modifier.min_value_modifier..modifier.max_value_modifier).to_a.sample
+      item.value = (item.value + value_mod >= 0) ? (item.value + value_mod) : item.value = nil
+    end
 
     # Implicit return
     item

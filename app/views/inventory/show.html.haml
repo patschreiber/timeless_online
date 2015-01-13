@@ -137,6 +137,15 @@
                                 = item.generated_item.defense
                               - else
                                 \--
+                          %tr
+                            %td
+                              Value
+                            %td
+                              - if item.generated_item.value.present?
+                                %span.ss-icon.ss-dollarsign
+                                = item.generated_item.value
+                              - else
+                                Priceless
 
 
       - else
