@@ -1,0 +1,39 @@
+@import 'colors';
+
+body {
+  background-color: $grey_1;
+}
+.atb-progress {
+  height: 2px;
+  color: #FFF;
+}
+.btn {
+  border-radius: 0;
+}
+
+.modal {
+
+  .modal-content {
+    background-color: $grey_2;
+    border-radius: 0;
+  }
+}
+.navbar {
+  border-bottom: 2px solid $orange;
+  margin-bottom: 0;
+}
+.progress {
+  background-color: $grey_7;
+  border-radius: 0;
+  box-shadow: 0px 0px 2px $black;
+  height: 2px;
+}
+.progress-bar {
+  background-color: $white;
+}
+.player-exp-bar {
+  background-color: $white;
+}
+.hp-progress-bar {
+  background-color: red;
+}
