@@ -46,16 +46,13 @@
 input[type=text],
 input[type=email],
 input[type=password] {
-  background-color: rgba(0,0,0,0.1);
-  border: none;
-  border: 1px solid rgba(0,0,0,0.15);
+  background-color: $grey_0;
   border-radius: 0;
 }
 
 input[type=text]:focus,
 input[type=email]:focus,
 input[type=password]:focus {
-  background-color: rgba(0,0,0,0.02);
-  border: 1px solid rgba(0,0,0,0.2);
-  box-shadow: none;
+  box-shadow: 0 0 2px $orange;
+  border-color: lighten($orange, 7%);
 }
