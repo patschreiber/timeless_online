@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150113044307) do
+ActiveRecord::Schema.define(version: 20150126221350) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -190,10 +190,15 @@ ActiveRecord::Schema.define(version: 20150113044307) do
     t.integer  "total_experience"
     t.integer  "current_gold"
     t.integer  "hp"
+    t.integer  "computed_hp"
     t.integer  "mp"
+    t.integer  "computed_mp"
     t.integer  "base_attack"
+    t.integer  "computed_attack"
     t.integer  "base_defense"
+    t.integer  "computed_defense"
     t.integer  "speed"
+    t.integer  "computed_speed"
     t.string   "current_area"
     t.integer  "total_wins"
     t.integer  "total_losses"
