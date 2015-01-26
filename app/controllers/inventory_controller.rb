@@ -35,9 +35,10 @@ class InventoryController < ApplicationController
         @user_inventory_unequip = @user.user_inventories.find_by_unique_item_id(@user_equipped_item_slot.unique_item_id)
         @user_inventory_unequip.equipped = nil
         @user_inventory_unequip.save!
-        # We're only going to return the unique_item_id because we only need to unequip the item.
-        # There is no need to send a whole item object back for the unequip
-        data['unequipped_item'] = @user_equipped_item_slot.unique_item_id
+        
+        # The unequipped item object to be sent back to the view
+        @unequipped_item =  GeneratedItem.find_by_unique_item_id(@user_equipped_item_slot.unique_item_id)
+        data['unequipped_item'] = @unequipped_item
       end
       
       # Equip or unequip item

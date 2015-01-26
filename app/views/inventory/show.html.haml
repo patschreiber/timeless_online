@@ -11,13 +11,15 @@
           .text-center
             .row
               .col-xs-6
-                %h2 #{current_user.user_stat.hp}
+                %h2#current-hp-val 
+                  #{current_user.user_stat.hp + current_user.user_stat.computed_hp}
                 %p
                   .progress
                     .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 60%;"}
                 %h4 HP
               .col-xs-6
-                %h2 #{current_user.user_stat.mp}
+                %h2#current-mp-val 
+                  #{current_user.user_stat.mp + current_user.user_stat.computed_mp}
                 %p
                   .progress
                     .progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 50%;"}
@@ -51,10 +53,12 @@
             Current Stats
           .row
             .col-xs-6
-              %h3 #{current_user.user_stat.base_attack}
+              %h3#current-attack-val
+                #{current_user.user_stat.base_attack}
               %h4 Attack
             .col-xs-6
-              %h3 #{current_user.user_stat.base_defense}
+              %h3#current-defense-val 
+                #{current_user.user_stat.base_defense}
               %h4 Defense
 
 .container
@@ -137,15 +141,6 @@
                                 = item.generated_item.defense
                               - else
                                 \--
-                          %tr
-                            %td
-                              Value
-                            %td
-                              - if item.generated_item.value.present?
-                                %span.ss-icon.ss-dollarsign
-                                = item.generated_item.value
-                              - else
-                                Priceless
 
 
       - else

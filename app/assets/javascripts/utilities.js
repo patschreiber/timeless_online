@@ -1,5 +1,5 @@
-function isUndefined(data) {
-  if (typeof(data) == undefined) {
+function isUndefined(obj) {
+  if (typeof(obj) === 'undefined') {
     return true;
   }
   else {
