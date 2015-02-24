@@ -24,6 +24,7 @@ class GeneratedItem < ActiveRecord::Base
   before_create :generate_unique_item_id
 
   belongs_to :user_inventory, :primary_key => :unique_item_id, :foreign_key => :unique_item_id
+  belongs_to :user_equipped_item, :primary_key => :unique_item_id, :foreign_key => :unique_item_id
 
   protected
 

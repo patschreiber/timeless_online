@@ -9,4 +9,6 @@
 #
 
 class UserEquippedItem < ActiveRecord::Base
+  belongs_to :user
+  has_many :generated_item, :primary_key => :unique_item_id, :foreign_key => :unique_item_id
 end

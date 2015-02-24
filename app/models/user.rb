@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_one :user_stat
   has_many :user_inventories
   has_many :user_skills
+  has_many :user_equipped_items
   has_many :skills, through: :user_skills
   has_many :user_magics
   has_many :magics, through: :user_magics
