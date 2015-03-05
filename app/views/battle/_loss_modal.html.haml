@@ -1,0 +1,19 @@
+.modal.fade#loser-modal{ :tabindex => "-1", :role => "dialog", "aria-hidden" => true, "aria-labelledby" => "loser-modal-label"}
+  .modal-dialog
+    .modal-content
+      .modal-header
+        %button.close{ :data => {:dismiss => "modal"} }
+          %span{ "aria-hidden" => true }
+            &times;
+          %span.sr-only
+            Close
+        %h3.modal-title.text-center#winner-modal-label
+          You lost!
+      .modal-body
+        .row
+          .col-xs-12
+            %p
+              Unfortunately you have succumbed to the evils of the world. 
+      .modal-footer
+        %button.btn.btn-primary{ :data => {:dismiss => "modal"} }
+          Continue

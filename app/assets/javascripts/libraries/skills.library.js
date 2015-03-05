@@ -1,5 +1,5 @@
 var Skills = {
-  "bash": {
+  "Bash": {
     damage: 10,
     healing: 0,
     effect: function() {

@@ -4,7 +4,7 @@
   .row
     .col-sm-4
       .well.ethereal
-        #player-stats{ :data => {:hp => "#{@user.user_stat.hp}",:speed => "#{@user.user_stat.speed}"} }
+        #player-stats{ :data => {:hp => "#{@user.user_stat.hp}", :speed => "#{@user.user_stat.speed}"} }
           .row
             .col-xs-12
               .pull-left
@@ -97,12 +97,13 @@
                     = link_to "Item 1", "#"
 
 = render :partial => 'victory_modal'
+= render :partial => 'loss_modal'
 
 
 //Prevents navigation away from page if battle is active
 :javascript
   $(window).on('beforeunload', function() {
-    if (!winConditionCheck()) {
+    if (!winConditionCheck() && !loseConditionCheck()) {
       return 'Leaving the battle will forfeit your rewards.'
     }
   });

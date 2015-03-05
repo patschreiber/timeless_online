@@ -198,6 +198,15 @@ function winCondition() {
   return false;
 }
 
+function loseCondition() {
+  $('#loser-modal').modal({
+    backdrop: 'static'
+  }).on('hide.bs.modal', function() {
+        //As an HTTP redirect (back button will not work ), we want this so they cant go back to the same battle
+        window.location.replace("/game");
+  });
+} 
+
 function humanizeItemName(item) {
   var item_prefix = item.prefix_name;
   var item_name = item.name;
@@ -280,7 +289,7 @@ function setEnemyHp(enemyHp) {
 
 
 function enemyAi() {
-  if (winConditionCheck() == false) {
+  if (winConditionCheck() == false && loseConditionCheck() == false) {
     enemyAtbReady = false;
     var playerHp = getPlayerHp();
     var promise = enemyAction();
@@ -289,14 +298,25 @@ function enemyAi() {
       console.log(data);
 
 
-      // If the basic attack flag is true, just apply the damage
+      // If the basic attack flag is true, just apply the damage, otherwise, complete the skill
       if (data.basic_attack == true) {
         playerHp = playerHp - data.attack; 
         setPlayerHp(playerHp);
-        loseConditionCheck();
+        if(loseConditionCheck()) {
+          loseCondition();
+        }
       }
       else {
-
+        // Enemy uses a skill
+        console.log(data.attack.name);
+        console.log(Skills[data.attack.name]);
+        playerHp = playerHp - Skills[data.attack.name].damage;
+        setPlayerHp(playerHp);
+        Skills[data.attack.name].effect();
+        if(loseConditionCheck()) {
+          console.log(loseConditionCheck());
+          loseCondition();
+        }
       }
     });
   }
@@ -319,4 +339,8 @@ function enemyAction() {
     complete: function() {}
   });
   return false;
+}
+
+function battleLog() {
+
 }
