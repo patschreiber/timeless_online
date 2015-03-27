@@ -12,7 +12,7 @@
             .row
               .col-xs-6
                 %h2#current-hp-val 
-                  #{current_user.user_stat.hp + current_user.user_stat.computed_hp}
+                  #{current_user.user_stat.computed_hp}
                 %p
                   .progress
                     .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 60%;"}

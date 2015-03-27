@@ -81,6 +81,7 @@ function attack() {
     enemyHp = enemyHp - 1000; //TODO use this for debuggin
     //enemyHp = enemyHp - player.base_damage;
     setEnemyHp(enemyHp);
+    battleLog('You attack the enemy for ' + player.base_damage + ' damage!');
     if (winConditionCheck()) {
       winCondition();
     }
@@ -105,6 +106,7 @@ function winConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp > 0 && currentEnemyHp <= 0) {
+    battleLog('You are victorious!');
     return true;
   }
   else {
@@ -116,6 +118,7 @@ function loseConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp <= 0 && currentEnemyHp > 0) {
+    battleLog('You were slain!');
     return true;
   }
   else {
@@ -302,6 +305,7 @@ function enemyAi() {
       if (data.basic_attack == true) {
         playerHp = playerHp - data.attack; 
         setPlayerHp(playerHp);
+        battleLog('Enemy attacks for ' + data.attack + ' damage!');
         if(loseConditionCheck()) {
           loseCondition();
         }
@@ -341,6 +345,6 @@ function enemyAction() {
   return false;
 }
 
-function battleLog() {
-
+function battleLog(str) {
+  $('.battle-log').prepend('<p>' + str + '</p>');
 }

@@ -6,6 +6,12 @@
   color: #FFF;
 }
 
+.battle-log {
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
 #rewardNumericalGains,
 #rewardItems {
   display: none;
