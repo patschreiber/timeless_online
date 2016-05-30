@@ -5,7 +5,7 @@ Wizardtower::Application.routes.draw do
     match '/signup' => 'registrations#new', via: [:get, :post], :as => :signup
     get '/signin' => 'devise/sessions#new'
     match '/signout' => 'devise/sessions#destroy', via: 'delete'
-    match '/profile' => 'devise/registrations#edit', via: [:get, :post], :as => :profile
+    match '/settings' => 'devise/registrations#edit', via: [:get, :post], :as => :settings
   end
 
   authenticated :user do 
@@ -21,13 +21,15 @@ Wizardtower::Application.routes.draw do
   get '/help' => 'pages#help', :as => :help
   match '/inventory' => 'inventory#show', via: [:get, :post], :as => :inventory
   get '/faq' => 'pages#faq', :as => :faq
+  match '/player-stats' => 'player#show', via: [:get, :post], :as => :player_stats
+
+  post '/equip' => 'inventory#equip', :as => :equip
+  post '/unequip' => 'inventory#unequip', :as => :unequip
 
   # Ajax requests
   post '/battle-action' => 'battle#battle_action'
   post '/post-battle-update' => 'battle#post_battle_update'
   post '/enemy-action' => 'battle#enemy_action'
-  post '/equip' => 'inventory#equip', :as => :equip
-  post '/unequip' => 'inventory#unequip', :as => :unequip
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

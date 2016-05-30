@@ -1,9 +1,6 @@
 - provide :title, "#{current_user.username.capitalize}'s Profile".html_safe
 
 .container
-  %h1
-    = current_user.username.capitalize
-  %hr
   .row
     .col-sm-6
       .row
@@ -48,33 +45,34 @@
           %h2
             Private Info
       .row
-        = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
-          = devise_error_messages!
-          .form-group
-            = f.label "" do
-              Email address
-              %span.small.text-info
-              (This will never be public and never given away)
-            = f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email Address"
-          
-          - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+        .col-sm-12
+          = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+            = devise_error_messages!
             .form-group
-              Currently waiting confirmation for: #{resource.unconfirmed_email} 
+              = f.label "" do
+                Email address
+                %span.small.text-info
+                (This will never be public and never given away)
+              = f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email Address"
+            
+            - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+              .form-group
+                Currently waiting confirmation for: #{resource.unconfirmed_email} 
 
-          .form-group
-            = f.label :password
-            = f.password_field :password, autocomplete: "off", :class => "form-control"
-          .form-group
-            = f.label :password_confirmation
-            = f.password_field :password_confirmation, autocomplete: "off", :class => "form-control"
-          .form-group
-            = f.label :current_password 
-            %em
-              (we need your current password to confirm your changes)
-            = f.password_field :current_password, autocomplete: "off", :class => "form-control"
-          .form-group
-            = f.submit "Update", :class => "btn btn-success"
+            .form-group
+              = f.label :password
+              = f.password_field :password, autocomplete: "off", :class => "form-control"
+            .form-group
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation, autocomplete: "off", :class => "form-control"
+            .form-group
+              = f.label :current_password 
+              %em
+                (we need your current password to confirm your changes)
+              = f.password_field :current_password, autocomplete: "off", :class => "form-control"
+            .form-group
+              = f.submit "Update", :class => "btn btn-success"
 
-          %div
-            Unhappy? 
-            = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete 
+            %div
+              Unhappy? 
+              = button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete 

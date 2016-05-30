@@ -1,51 +1,16 @@
 - content_for :body_class, "inventory"
 
-.jumbotron.inventory-jumbotron
-  .container
-    .row
-      .col-sm-6
-        %section
-          %h2
-            #{current_user.username.capitalize}'s Stats
-          .text-center
-            .row
-              .col-xs-6
-                %h2#current-hp-val 
-                  #{current_user.user_stat.computed_hp}
-                %p
-                  .progress
-                    .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 60%;"}
-                %h4 HP
-              .col-xs-6
-                %h2#current-mp-val 
-                %p
-                  .progress
-                    .progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 50%;"}
-                %h4 MP
-
-      .col-sm-6
-        .text-center
-          %h2
-            Current Stats
-          .row
-            .col-xs-6
-              %h3#current-attack-val
-                #{current_user.user_stat.base_attack}
-              %h4 Attack
-            .col-xs-6
-              %h3#current-defense-val 
-                #{current_user.user_stat.base_defense}
-              %h4 Defense
-
 .container
   .row
-    %h3
-      Loot Crate
+    .col-md-12
+      %h2
+        Loot Crate
+  .row
     .col-md-6
       - if @user_inventories_equippables.present?
         %h4
           Equippables
-        %table#loot-crate.table.table-condensed
+        %table#loot-crate.table
           %thead
             %tr
               %th
@@ -58,7 +23,7 @@
               %th
           %tbody
             - @user_inventories_equippables.each do |item|
-              %tr.item{ :id => "item-#{item.unique_item_id}" }
+              %tr{ :id => "item-#{item.unique_item_id}" }
                 - if item.equipped
                   %td.equipped.ss-icon.ss-check.text-center.text-success
                 - else
@@ -73,9 +38,9 @@
                   = item.quantity
                 %td.action
                   - if item.equipped
-                    = button_to "Unequip", unequip_path, :class => "btn btn-primary", :params => {:unique_item_id => "#{item.unique_item_id}"}               
+                    = button_to "Unequip", unequip_path, :class => "btn btn-primary btn-block", :params => {:unique_item_id => "#{item.unique_item_id}"}               
                   - else
-                    = button_to "Equip", equip_path, :class => "btn btn-primary", :params => {:unique_item_id => "#{item.unique_item_id}"}
+                    = button_to "Equip", equip_path, :class => "btn btn-primary btn-block", :params => {:unique_item_id => "#{item.unique_item_id}"}
  
                 %td.options{ :data => {:toggle => "popover", :trigger => "focus", :title => "#{item.generated_item.prefix_name} #{item.generated_item.name} #{item.generated_item.suffix_name}"} }
                   = link_to "#" do
@@ -144,7 +109,7 @@
               %td.quantity
                 = item.quantity
               %td.action
-                %button.btn.btn-primary.use-item
+                %button.btn.btn-primary.btn-block.use-item
                   Use
               %td.options
                 = link_to "#" do

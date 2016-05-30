@@ -1,0 +1,15 @@
+@import 'colors';
+
+#loot-crate {
+  background-color: $white;
+}
+#loot-crate td.action {
+  padding: 0 1.5em 0 0;
+}
+#loot-crate td.quantity {
+  text-align: center;
+}
+#loot-crate button {
+  width: 100%;
+  height: 100%;
+}

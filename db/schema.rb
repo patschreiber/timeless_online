@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160528170544) do
+ActiveRecord::Schema.define(version: 20160530185346) do
 
   create_table "areas", force: true do |t|
     t.string "name"
@@ -175,6 +175,8 @@ ActiveRecord::Schema.define(version: 20160528170544) do
   create_table "user_skills", force: true do |t|
     t.integer "user_id"
     t.integer "skill_id"
+    t.integer "current_ap"
+    t.boolean "learned"
   end
 
   create_table "user_stats", force: true do |t|
