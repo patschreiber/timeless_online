@@ -1,14 +1,12 @@
 $(document).ready(function() {
 
   if ($('body').hasClass('battle')) {
-    $(function() {
-      var atbReady = false;
-      var enemyAtbReady = false;
-      disableBattleActions();
-      AtbGauge.playerAtbGauge(0, 1);
-      //AtbGauge.playerAtbGauge(0, getPlayerSpeed());
-      AtbGauge.enemyAtbGauge(0, getEnemySpeed());
-    });
+    var atbReady = false;
+    var enemyAtbReady = false;
+    disableBattleActions();
+    AtbGauge.playerAtbGauge(0, 1);
+    //AtbGauge.playerAtbGauge(0, getPlayerSpeed());
+    AtbGauge.enemyAtbGauge(0, getEnemySpeed());
   }
 });
 
@@ -53,6 +51,10 @@ var AtbGauge = {
         clearInterval(timer);
         enableBattleActions();
       }
+
+      if (winConditionCheck() || loseConditionCheck()) {
+        clearInterval(timer);
+      }
     }, speed);
   },
   enemyAtbGauge: function (count, speed) {
@@ -63,6 +65,10 @@ var AtbGauge = {
         enemyAtbReady = true;
         clearInterval(timer);
         enemyAi();
+      }
+
+      if (winConditionCheck() || loseConditionCheck()) {
+        clearInterval(timer);
       }
     }, speed);
   }
@@ -81,7 +87,7 @@ function attack() {
     enemyHp = enemyHp - 1000; //TODO use this for debuggin
     //enemyHp = enemyHp - player.base_damage;
     setEnemyHp(enemyHp);
-    battleLog('You attack the enemy for ' + player.base_damage + ' damage!');
+    battleLog('You attack the enemy for ' + player.base_attack + ' damage!');
     if (winConditionCheck()) {
       winCondition();
     }
@@ -105,13 +111,8 @@ function items(itemUsed) {}
 function winConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
-  if (currentPlayerHp > 0 && currentEnemyHp <= 0) {
-    battleLog('You are victorious!');
-    return true;
-  }
-  else {
-    return false;
-  }
+
+  return currentPlayerHp > 0 && currentEnemyHp <= 0;
 }
 
 function loseConditionCheck() {
@@ -127,6 +128,8 @@ function loseConditionCheck() {
 }
 
 function winCondition() {
+  battleLog('You are victorious!');
+
   // Send
   data = {enemy_id: getEnemyId(), battle_outcome: 1};
 
