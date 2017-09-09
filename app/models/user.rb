@@ -59,4 +59,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def get_computed_stats
+    item_bonuses =  self.user_inventories.get_stats_from_equipped_items 
+
+    @computed_stats = {
+      'hp'      => self.user_stat.hp + item_bonuses['hp'],
+      'mp'      => self.user_stat.mp + item_bonuses['mp'],
+      'attack'  => self.user_stat.base_attack + item_bonuses['attack'],
+      'defense' => self.user_stat.base_defense + item_bonuses['defense']
+    }
+  end
 end

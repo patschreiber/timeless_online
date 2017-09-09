@@ -6,22 +6,30 @@
           #{current_user.username.capitalize}
           %span.small
             Lv. #{current_user.user_stat.level}
+        .text-center
+          .row
+            .col-xs-12
+              .progress.exp-progress
+                .progress-bar{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: #{@percent_to_level}%;"}  
+              %h4
+                #{@exp_left} Exp to Next Level
 
-          .text-center
-            .row
-              .col-xs-6
-                %h2#current-hp-val 
-                  #{current_user.user_stat.computed_hp}
-                %p
-                  .progress
-                    .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 60%;"}
-                %h4 HP
-              .col-xs-6
-                %h2#current-mp-val 
-                %p
-                  .progress
-                    .progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 50%;"}
-                %h4 MP
+          .row
+            .col-xs-6
+              %h2#current-hp-val 
+                #{current_user.user_stat.computed_hp}
+              %p
+                .progress
+                  .progress-bar.hp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "#{@computed_stats['hp']}", :style => "width: 100%;"}
+              %h4 HP
+              %h2 #{@computed_stats['hp']}
+            .col-xs-6
+              %h2#current-mp-val 
+              %p
+                .progress
+                  .progress-bar.mp-progress-bar.remove-progress-bar-transition{:role => "progressbar", :valuemin => "0", :valuemax => "100", :style => "width: 100%;"}
+              %h4 MP
+              %h2 #{@computed_stats['mp']}
 
       .col-sm-6
         %h2
@@ -33,21 +41,50 @@
                 HP
               %td
                 #{current_user.user_stat.hp}
+                %span.text-success
+                - unless @stats_from_items['hp'] === 0
+                  - if @stats_from_items['hp'] < 0
+                    %span.text-danger
+                      (#{@stats_from_items['hp']})
+                  - else
+                    %span.text-success
+                      (+#{@stats_from_items['hp']})              
             %tr
               %td
                 MP
               %td
                 #{current_user.user_stat.mp}
+                - unless @stats_from_items['mp'] === 0
+                  - if @stats_from_items['mp'] < 0
+                    %span.text-danger
+                      (#{@stats_from_items['mp']})
+                  - else
+                    %span.text-success
+                      (+#{@stats_from_items['mp']})
             %tr
               %td
                 Attack
               %td
                 #{current_user.user_stat.base_attack}
+                - unless @stats_from_items['attack'] === 0
+                  - if @stats_from_items['attack'] < 0
+                    %span.text-danger
+                      (-#{@stats_from_items['attack']})
+                  - else
+                    %span.text-success
+                      (+#{@stats_from_items['attack']})
             %tr
               %td
                 Defense
               %td
                 #{current_user.user_stat.base_defense}
+                - unless @stats_from_items['defense'] === 0
+                  - if @stats_from_items['defense'] < 0
+                    %span.text-danger
+                      (#{@stats_from_items['defense']})
+                  - else
+                    %span.text-success
+                      (+#{@stats_from_items['defense']})
             %tr
               %td
                 Speed

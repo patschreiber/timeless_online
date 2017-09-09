@@ -68,6 +68,13 @@
 .hp-progress-bar {
   background-color: red;
 }
+.mp-progress-bar {
+  background-color: $mana-blue;
+}
+.exp-progress {
+  margin: 11px 0 0 0;
+  height: 16px;
+}
 
 
 // Alignments // ----------------------------------------------------
