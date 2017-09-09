@@ -69,4 +69,8 @@ class User < ActiveRecord::Base
       'defense' => self.user_stat.base_defense + item_bonuses['defense']
     }
   end
+
+  def get_current_user_area
+    Area.find(self.user_stat.current_area)
+  end
 end

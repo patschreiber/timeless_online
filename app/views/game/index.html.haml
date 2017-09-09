@@ -1,4 +1,4 @@
-- content_for :body_class, "game"
+- content_for :body_class, "game area-#{current_user.get_current_user_area.name.downcase!.parameterize}"
 
 .container
   .row

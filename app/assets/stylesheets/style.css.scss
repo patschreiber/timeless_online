@@ -159,3 +159,13 @@ input[type=password]:focus {
     box-shadow: 0 0 3px $aqua;
   }
 }
+
+// Game Backgrounds // ----------------------------------------------------
+
+.area-tainted-grassland {
+  background: url(tainted_grassland_placeholder_1024x614.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
