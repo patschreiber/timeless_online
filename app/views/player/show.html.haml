@@ -90,3 +90,9 @@
                 Speed
               %td
                 #{current_user.user_stat.speed}
+            %tr
+              %td.text-center{:colspan => "2"}
+                Current Gold: 
+                %span.text-gold
+                  %strong
+                    #{current_user.user_stat.current_gold}

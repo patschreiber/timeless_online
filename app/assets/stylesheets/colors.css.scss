@@ -35,3 +35,27 @@ $button_primary_border: #357ebd;
 $button_primary_background_color: #428bca;
 
 // Text // --------------------------------------------------
+
+// Items // --------------------------------------------------
+$gold: rgb(196, 176, 1);
+$uncommon: rgb(123, 239, 0);
+$rare: rgb(106, 42, 236);
+$unique: rgb(196, 176, 1);
+$ancient: rgb(240, 59, 29);
+
+.text-gold {
+  color: $gold;
+}
+.text-uncommon {
+  color: $uncommon;
+}
+.text-rare {
+  color: $rare;
+}
+.text-unique {
+  color: $unique;
+}
+.text-ancient {
+  color: $ancient;
+}
+
