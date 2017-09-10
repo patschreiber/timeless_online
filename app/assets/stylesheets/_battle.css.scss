@@ -1,0 +1,38 @@
+.atb-gauge {
+  margin-top: 10px;
+}
+.atb-progress {
+  height: 2px;
+  color: $white;
+}
+.battle-log {
+  h4 {
+    @include ethereal($white, 0.7);
+    display: inline-block;
+    font-style: italic;
+    margin: 0;
+    padding: 10px;
+    text-transform: uppercase;
+  }
+}
+.battle-log-console {
+  @include ethereal($white, 0.7);
+  border: 0;
+  border-radius: 0 4px 4px 4px;
+  min-height: 300px;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+
+#rewardNumericalGains,
+#rewardItems {
+  display: none;
+}
+
+.battle-pane {
+  @include ethereal($black);
+}
+
+#player-actions table {
+  border: 0;
+}

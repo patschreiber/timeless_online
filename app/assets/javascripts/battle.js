@@ -119,7 +119,7 @@ function loseConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp <= 0 && currentEnemyHp > 0) {
-    battleLog('You were slain!');
+    battleLog('You were slain!', 'loss');
     return true;
   }
   else {
@@ -128,7 +128,7 @@ function loseConditionCheck() {
 }
 
 function winCondition() {
-  battleLog('You are victorious!');
+  battleLog('You are victorious!', 'win');
 
   // Send
   data = {enemy_id: getEnemyId(), battle_outcome: 1};
@@ -348,6 +348,17 @@ function enemyAction() {
   return false;
 }
 
-function battleLog(str) {
-  $('.battle-log').prepend('<p>' + str + '</p>');
+function battleLog(str, condition) {
+  var identifier = null;
+  switch(condition) {
+    case "win":
+      identifier = "&#9734;";
+      break;
+    case "loss":
+      identifier = "&#9760;";
+      break;
+    default:
+      identifier = '&#9673;';
+  }
+  $('.battle-log-console').prepend('<p>' + identifier + " " + str + '</p>');
 }

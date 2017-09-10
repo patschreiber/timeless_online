@@ -1,0 +1,9 @@
+@mixin ethereal($color, $alpha: 0.4) {
+  background-color: rgba($color, $alpha);
+}
+
+@mixin ethereal-hover($color, $alpha: 0.3) {
+  &:hover {
+    background-color: rgba($color, $alpha);
+  }
+}

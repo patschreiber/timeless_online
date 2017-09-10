@@ -1,12 +1,5 @@
-@import 'colors';
-
-
-
 .hidden {
   display: none;
-}
-.ethereal {
-  background-color: rgba(0,0,0,0.4);
 }
 
 .danger {
@@ -36,6 +29,10 @@
 .margin-tall-4 {
   margin-top: 100px;
   margin-bottom: 100px;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 
@@ -79,6 +76,11 @@
 
 // Alignments // ----------------------------------------------------
 
+.bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+}
 
 // Inputs // ----------------------------------------------------
 
@@ -160,8 +162,11 @@ input[type=password]:focus {
   }
 }
 
-// Game Backgrounds // ----------------------------------------------------
+.engage-battle {
+  width: 100%;
+}
 
+// Game Backgrounds // ----------------------------------------------------
 .area-tainted-grassland {
   background: url(tainted_grassland_placeholder_1024x614.jpg) no-repeat center center fixed;
   -webkit-background-size: cover;

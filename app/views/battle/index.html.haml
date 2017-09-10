@@ -1,9 +1,9 @@
-- content_for :body_class, "battle"
+- content_for :body_class, "battle area-#{current_user.get_current_user_area.name.downcase!.parameterize}"
 
 .container
   .row
     .col-sm-4
-      .well.ethereal
+      .well.battle-pane
         #player-stats{ :data => {:hp => "#{@user.user_stat.hp}", :speed => "#{@user.user_stat.speed}"} }
           .row
             .col-xs-12
@@ -33,7 +33,7 @@
           = render :partial => 'atb_gauge', :locals => { :atb_owner => 'player' }
     
     .col-sm-4.col-sm-offset-4
-      .well.ethereal
+      .well.battle-pane
         #enemy-stats{ :data => {:enemyid => "#{@enemy.id}", :hp => "#{@enemy.hp}", :mp => "#{@enemy.mp}", :baseatk => "#{@enemy.base_attack}", :baseaef => "#{@enemy.base_defense}", :speed => "#{@enemy.speed}"} }
           .row
             .col-xs-12
@@ -103,7 +103,9 @@
                     = link_to "Item 1", "#"
   .row
     .col-xs-12
-      .well.battle-log
+      .battle-log
+        %h4 Battle Log
+        .well.battle-log-console
 
 = render :partial => 'victory_modal'
 = render :partial => 'loss_modal'
