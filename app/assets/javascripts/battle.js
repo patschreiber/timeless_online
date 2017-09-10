@@ -119,7 +119,6 @@ function loseConditionCheck() {
   var currentPlayerHp = getPlayerHp();
   var currentEnemyHp = getEnemyHp();
   if (currentPlayerHp <= 0 && currentEnemyHp > 0) {
-    battleLog('You were slain!', 'loss');
     return true;
   }
   else {
@@ -211,6 +210,7 @@ function loseCondition() {
         //As an HTTP redirect (back button will not work ), we want this so they cant go back to the same battle
         window.location.replace("/game");
   });
+  battleLog('You were slain!', 'loss');
 } 
 
 function humanizeItemName(item) {
@@ -321,7 +321,6 @@ function enemyAi() {
         setPlayerHp(playerHp);
         Skills[data.attack.name].effect();
         if(loseConditionCheck()) {
-          console.log(loseConditionCheck());
           loseCondition();
         }
       }
