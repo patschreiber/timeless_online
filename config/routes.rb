@@ -22,6 +22,7 @@ Wizardtower::Application.routes.draw do
   match '/inventory' => 'inventory#show', via: [:get, :post], :as => :inventory
   get '/faq' => 'pages#faq', :as => :faq
   match '/player-stats' => 'player#show', via: [:get, :post], :as => :player_stats
+  match '/friends-list' => 'friends#index', via: [:get, :post], :as => :friend_list
 
   post '/equip' => 'inventory#equip', :as => :equip
   post '/unequip' => 'inventory#unequip', :as => :unequip
